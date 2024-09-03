@@ -39,6 +39,7 @@ public class RenewBookServlet extends HttpServlet{
             if(currentDate.isEqual(returnDate)) {
             	HttpSession session1=req.getSession();
             	session1.setAttribute("messages", "You can't Renew Book now becase is alerady reserved by another user");
+            	
             }
            
                 if (currentDate.isBefore(afterDays)) {
