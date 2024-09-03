@@ -157,24 +157,39 @@ public static IssueBookDTO fetchSingleUserForReturnDate(int id)
 return issueBookDTO;	
 
 }
-//
-//public static IssueBookDTO fetchAccordingreturndate(int id)
-//{
-//	IssueBookDTO issueBookDTO=null;
-//	String sql="select returndate from issuebooks where id=?";
-//	try {
-//		Connection con=IssueBookDAO.getConnection();
-//		PreparedStatement ps=con.prepareStatement(sql);
-//		ps.setInt(1, id);
-//		ResultSet rs=ps.executeQuery();
-//		while(rs.next())
-//		{
-//			issueBookDTO=new IssueBookDTO();
-//			issueBookDTO.setReturnDate(rs.getString(1));
-//		}
-//	} catch (Exception e) {
-//		e.printStackTrace();
-//	}
-//	return issueBookDTO;
-//}
+public static int updateBookstatus(String status,String status1)
+{
+	int i=0;
+	String sql="update issuebooks set status=? where status=?";
+	try {
+		Connection con=IssueBookDAO.getConnection();
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, status);
+		
+		ps.setString(2, status1);
+	 i=ps.executeUpdate();
+		con.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return i;
+}
+
+public static int updateBookDetails(String status,String quantity,int id)
+{
+	int i=0;
+	String sql="update issuebooks set status=?,userbooks=? where id=?";
+	try {
+		Connection con=IssueBookDAO.getConnection();
+		PreparedStatement ps=con.prepareStatement(sql);
+		ps.setString(1, status);
+		ps.setString(2, quantity);
+		ps.setInt(3, id);
+	 i=ps.executeUpdate();
+		con.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return i;
+}
 }

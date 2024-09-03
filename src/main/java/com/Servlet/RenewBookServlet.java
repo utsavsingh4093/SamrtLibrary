@@ -37,12 +37,22 @@ public class RenewBookServlet extends HttpServlet{
             LocalDate afterDays = returnDate.plusDays(30);
             
             if(currentDate.isEqual(returnDate)) {
-            	HttpSession session1=req.getSession();
-            	session1.setAttribute("messages", "You can't Renew Book now becase is alerady reserved by another user");
-            	
+            	String status ="Issued";
+            	String status1 ="Reserved";
+            	int i=IssueBookDAO.updateBookstatus(status,status1);
+            	if(i>0) {
+              		int j=IssueBookDAO.updateBookDetails("NotIssued", "0", id);
+              		if(j>0) {
+            	 HttpSession session=req.getSession();
+            	session.setAttribute("messages", "You can't Renew Book now becase is alerady reserved by another user");
+            	resp.sendRedirect("RenewBook.jsp");
+              		}
+            	}else {
+            		resp.sendRedirect("UserHome.jsp");
+            	}
             }
            
-                if (currentDate.isBefore(afterDays)) {
+            else if (currentDate.isBefore(afterDays)) {
                     int result = IssueBookDAO.renewBook(currentDate.toString(), afterDays.toString(), id);
                     if (result > 0) 
                     {
@@ -54,13 +64,13 @@ public class RenewBookServlet extends HttpServlet{
                     }
                 } else {
                     HttpSession session = req.getSession();
-                    session.setAttribute("mess", "You can't renew the book now. You can renew book after the return date: " + returnDate + ". Thank you.");
+                    session.setAttribute("mess", "You can't renew the book now. You can renew book on the return date: " + returnDate + ". Thank you.");
                     resp.sendRedirect("RenewBook.jsp");
                 }
             
         } catch (NumberFormatException | SQLException e) {
             e.printStackTrace();
-            //resp.sendRedirect("ErrorPage.jsp");
+      
         }
     }
 }

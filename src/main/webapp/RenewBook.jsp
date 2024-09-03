@@ -51,12 +51,11 @@
   %>
   <a href="UserHome.jsp"><button type="submit" class="btn btn-success">Back</button></a>
 <c:set value="${getingreturndate}" var="a"></c:set>
-<h1 style="text-align: center; color: blue;">This is Book Detail</h1>
+<h1 style="text-align: center; color: blue;">This Return Books Detail</h1>
 <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>
  <sql:query dataSource="${ds}" var="rs">select * from issueBooks where sid='<c:out value="${getsId}"/>' and userbooks>0 and status='Issued';</sql:query>
                
 <div class="container">
-<h3 style="color: gray">Renew Book here</h3>
 <table class="table">
 <tr>
 <td>Image</td>
@@ -82,7 +81,7 @@
 <td><c:out value="${row.returndate}"></c:out></td>
 <td>
 <form action="newbooks" method="post">
-    <input type="hidden" name="id" value="${row.id}" />
+    <input type="hidden" name="id" value="${row.id}"/>
     <button type="submit" class="btn btn-success">Renew</button>
 </form>
 </td>
