@@ -13,8 +13,10 @@
     <div class="login-container">
         <div class="login-box">
         <c:set value="${getid}" var="a"></c:set>
-       <span style="display: flex;flex-direction: row" > <a href="ViewBook.jsp"><button style="background-color: #dc3545;" type="submit" class="btn btn-danger">Back</button></a>
-            <h2 style="margin-left: 75px">Update Book</h2></span>
+        <span style="display: flex;flex-direction: row" > 
+         <h2>Update Book</h2>
+        <a href="ViewBook.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px; type="submit" class="btn">X</button></a>
+           </span>
             <form action="updatepagedata" method="post">
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
             <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>

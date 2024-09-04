@@ -9,8 +9,10 @@
 <body>
     <div class="login-container">
         <div class="login-box">
-        <span style="display: flex;flex-direction: row" > <a href="AdminHome.jsp"><button style="padding-top: 5px;background-color: #dc3545;" type="submit" class="btn">Back</button></a>
-            <h2 style="margin-left: 75px">Add Book</h2></span>
+        <span style="display: flex;flex-direction: row" > 
+         <h2>Add Book</h2>
+        <a href="AdminHome.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px; type="submit" class="btn">X</button></a>
+           </span>
            
             <form action="addingbook" method="post" enctype="multipart/form-data">
                 <div class="input-group">
