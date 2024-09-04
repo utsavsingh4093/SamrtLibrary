@@ -20,7 +20,7 @@
   String mess=(String)session.getAttribute("getMessage");
   if(mess!=null){
 	  %>
-<div class="alert alert-success alert-dismissible">
+<div class="alert alert-danger alert-dismissible">
   <a href="Home.jsp" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong><%= mess %></strong>
 </div>

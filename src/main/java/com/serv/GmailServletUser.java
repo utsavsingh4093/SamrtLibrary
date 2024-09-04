@@ -103,9 +103,9 @@ public class GmailServletUser extends HttpServlet {
             session.setAttribute("getEmail", email);
             }
             else {
-          	  out.println("This Email is Alerady Exist");
-          	  RequestDispatcher dispatcher = req.getRequestDispatcher("Home.jsp");
-      	        dispatcher.include(req, resp);
+            	HttpSession session=req.getSession();
+            	session.setAttribute("getMessage", "This Email is Alerady Exist so please try again with another email..");
+          	 resp.sendRedirect("Home.jsp");
             }
         } catch (Exception e) {
            System.out.println(e);

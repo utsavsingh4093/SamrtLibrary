@@ -95,8 +95,8 @@ public static IssueBookDTO fetchSingleUser(int id)
 		 issueBookDTO.setStatus(rs.getString(8));
 		 issueBookDTO.setIssueDate(rs.getString(9));
 		 issueBookDTO.setReturnDate(rs.getString(10));
-		 
 	  }
+	  rs.close();
 	  conn.close();
 } catch (Exception e) {
 	e.printStackTrace();
@@ -150,6 +150,7 @@ public static IssueBookDTO fetchSingleUserForReturnDate(int id)
 		  issueBookDTO=new IssueBookDTO();
 		 issueBookDTO.setReturnDate(rs.getString(1));
 	  }
+	  rs.close();
 	  conn.close();
 } catch (Exception e) {
 	e.printStackTrace();

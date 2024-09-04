@@ -67,6 +67,7 @@ public static BookUser fetch(int id) {
 			bookUser.setBookimg(rs.getString(6));
 			
 		}
+		rs.close();
 		con.close();
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -126,6 +127,7 @@ try {
 		list.add(bookUser);
 		
 	}
+	rs.close();
 	connection.close();
 } catch (Exception e) {
 	e.printStackTrace();

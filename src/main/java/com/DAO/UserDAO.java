@@ -42,6 +42,7 @@ public class UserDAO {
 				user.setPassword(rs.getString(5));
 				user.setMembernumber(rs.getString(6));	
 			}
+			rs.close();
 			connection.close();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -69,6 +70,7 @@ public class UserDAO {
 			user.setMembernumber(rs.getString(6));	
 			list.add(user);
 		}
+		rs.close();
 		conn.close();
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -90,6 +92,8 @@ public class UserDAO {
 				user=new User();
 				user.setName(rs.getString(1));
 			}
+			rs.close();
+			ps.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

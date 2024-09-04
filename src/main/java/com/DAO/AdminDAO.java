@@ -43,6 +43,7 @@ public class AdminDAO {
 				user.setPassword(rs.getString(7));
 				user.setMemberShipNumber(rs.getString(8));	
 			}
+			rs.close();
 			connection.close();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -73,8 +74,9 @@ public class AdminDAO {
 			admin.setPassword(rs.getString(7));
 			admin.setMemberShipNumber(rs.getString(8));	
 			list.add(admin);
-			conn.close();
 		}
+		rs.close();
+		conn.close();
 		System.out.println(list.size()==0);
 		
 	} catch (Exception e) {
