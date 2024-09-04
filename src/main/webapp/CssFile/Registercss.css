@@ -12,7 +12,7 @@ body {
   align-items: center;
   padding: 10px;
   justify-content: space-between;
-  flex-direction: column;/*Flex mex means wegive the direction to colum view*/
+  flex-direction: column;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 .container {
@@ -102,7 +102,6 @@ form .button input {
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 form .button input:hover {
-  /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
 @media (max-width: 584px) {

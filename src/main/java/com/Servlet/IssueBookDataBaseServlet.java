@@ -16,7 +16,8 @@ public class IssueBookDataBaseServlet extends HttpServlet{
 	private static final long serialVersionUID = 765784629764287163L;
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+   int id=Integer.parseInt(req.getParameter("id"));
+   
 String driver="com.mysql.cj.jdbc.Driver";
 HttpSession session=req.getSession();
 session.setAttribute("getdriver", driver);
@@ -33,6 +34,9 @@ String pass="4093";
 HttpSession session4=req.getSession();
 session4.setAttribute("getPass", pass);
 
+   HttpSession session5=req.getSession();
+   session.setAttribute("getBookId", id);
+   
 	RequestDispatcher requestDispatcher=req.getRequestDispatcher("issueBookDetails.jsp");
 	requestDispatcher.forward(req, resp);
 	

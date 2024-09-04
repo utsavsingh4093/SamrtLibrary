@@ -31,7 +31,8 @@
 <c:forEach items="${rs.rows}" var="row">
 <tr>
 	<td>
-    <a href="issuebooks"><c:url var="imageUrl" value="/Book/${row.Book}" />
+    
+    <a href="issuebooks?id=${row.id}"><c:url var="imageUrl" value="/Book/${row.Book}" />
     <img src="${imageUrl}" alt="Book Image" style="max-width: 50px;" /></a>
     </td>
 
