@@ -13,7 +13,7 @@
     <div class="login-container">
         <div class="login-box">
         <c:set value="${getid}" var="a"></c:set>
-       <span style="display: flex;flex-direction: row" > <a href="AdminHome.jsp"><button type="submit" class="btn btn-danger">Go Back</button></a>
+       <span style="display: flex;flex-direction: row" > <a href="ViewBook.jsp"><button type="submit" class="btn btn-danger">Go Back</button></a>
             <h2 style="margin-left: 20px">Update Book</h2></span>
             <form action="updatepagedata" method="post">
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
