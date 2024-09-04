@@ -25,10 +25,12 @@ import com.DTO.User;
 import jakarta.mail.Session;
 
 class Appdata {
-	static Random random=new Random();
-	static long number= Math.abs(random.nextLong()%100000000);
-	//static long number=Math.abs(random.nextLong()%100000000);
-    public static void start(String pas,String email) {
+	private static Random random = new Random();
+
+    public static long generateRandomNumber() {
+        return Math.abs(random.nextLong() % 100000000);
+    }
+    public static void start(String pas,String email,long number) {
            //String str=String.valueOf(number);
          GmailSender gmailSender=new GmailSender();
          String from="smartlibrary40@gmail.com";
@@ -94,8 +96,9 @@ public class GmailServletAdmin extends HttpServlet {
             ps.setString(4, email);
             ps.setString(5, role);
             ps.setString(6, password);
-            ps.setLong(7, Appdata.number);
-            Appdata.start(password,email);
+            long number=Appdata.generateRandomNumber();
+            ps.setLong(7, number);
+            Appdata.start(password,email,number);
             int i = ps.executeUpdate();
             if (i == 1) {
                 resp.sendRedirect("Home.jsp");

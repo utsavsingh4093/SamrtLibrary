@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+<a href="issueBooks.jsp"><button style="margin-left: 30px" type="submit" class="btn btn-danger">Go Back</button></a>
 <div class="container p-3 text-center">
 <img style="height: 450px; width: 900px" src="image/im3.jpg"  class="img-fluid">
 <h2>Sorry...! This Book is not currently available in Library..</h2>

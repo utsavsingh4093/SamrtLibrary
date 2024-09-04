@@ -20,9 +20,11 @@ import com.DAO.UserDAO;
 
 
 class App {
-	static Random random=new Random();
-	static long number= Math.abs(random.nextInt()%1000000);
-	//static long number=Math.abs(random.nextLong()%100000000);
+	private static Random random = new Random();
+
+    public static long generateRandomNumber() {
+        return Math.abs(random.nextLong() % 1000000);
+    }
     public static void start(String pas,String email,long number) {
            //String str=String.valueOf(number);
          GmailSender gmailSender=new GmailSender();
@@ -87,8 +89,9 @@ public class GmailServletUser extends HttpServlet {
             ps.setString(2, email);
             ps.setString(3, role);
             ps.setString(4, password);
-            ps.setLong(5, App.number);
-            App.start(password,email,App.number);
+            long number=App.generateRandomNumber();
+            ps.setLong(5, number);
+            App.start(password,email,number);
             int i = ps.executeUpdate();
             if (i == 1) {
                 resp.sendRedirect("Home.jsp");
