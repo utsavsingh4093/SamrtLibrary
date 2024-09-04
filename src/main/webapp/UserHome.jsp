@@ -79,10 +79,10 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img height="500px" width="100%" src="image/im4.png" class="d-block w-100" alt="...">
+            <img height="500px" width="100%" src="image/im3.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h2 style="color:whitesmoke;">Welcome <c:out value="${getName}"/></h2> 
-              <p style="color: whitesmoke;">You Can Do Login With any one Account You Have For Books</p>
+              <p style="color: whitesmoke;">Are Smart Library Provide You All Types Of Books..</p>
             </div>
           </div>
     
@@ -160,7 +160,14 @@
 
   </div>
 </div>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+         Smart Library Management<br>
+          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Email:- smartlibrary40@gmail.com</a>
+        </div>
+      </footer>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
