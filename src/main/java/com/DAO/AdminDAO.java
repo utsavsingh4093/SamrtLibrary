@@ -50,6 +50,7 @@ public class AdminDAO {
 		}
 		return user;
 	}
+	
 	public static List<Admin> getEmail(String email)
 	{
 		List<Admin> list=new ArrayList<Admin>();

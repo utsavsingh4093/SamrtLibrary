@@ -8,9 +8,10 @@
 </head>
 <body>
     <div class="login-container">
-    <a href="AdminHome.jsp"><button tyep=submit>Home</button> </a>
         <div class="login-box">
-            <h2>Add Book</h2>
+        <span style="display: flex;flex-direction: row" > <a href="AdminHome.jsp"><button type="submit" class="btn btn-danger">Go Back</button></a>
+            <h2 style="margin-left: 20px">Add Book</h2></span>
+           
             <form action="addingbook" method="post" enctype="multipart/form-data">
                 <div class="input-group">
                     <label for="namebook">Name Of Book</label>

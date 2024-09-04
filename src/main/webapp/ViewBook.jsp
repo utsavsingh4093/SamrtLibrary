@@ -14,9 +14,9 @@
 </head>
 <body>
 <h1 style="text-align: center; color: green;">There is Data Of Book Table</h1>
+<a href="AdminHome.jsp"><button style="margin-left: 30px" type="submit" class="btn btn-danger">Go Back</button></a>
 <sql:setDataSource driver="${getdriver}" var="ds" url="${geturl}" user="${getUser}" password="${getPass}"/>
 <sql:query dataSource="${ds}" var="rs">SELECT * FROM addbook;</sql:query>
-<a href="AdminHome.jsp"><button type="submit" class="btn btn-success">Home</button></a>
 <div class="container">
 <table class="table">
 <tr>
@@ -40,7 +40,7 @@
 		<td><c:out value="${row.Edition}"/></td>
 		<td><c:out value="${row.Quantity}"/></td>
 		<td>
-<form action="deletedata" method="post">
+<form action="deletebook" method="post">
     <input type="hidden" name="id" value="${row.id}" />
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>

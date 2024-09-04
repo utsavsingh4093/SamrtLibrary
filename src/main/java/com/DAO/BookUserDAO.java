@@ -78,7 +78,7 @@ public static int deleteBookById(int id) {
 	int i = 0;
 	try {
 		Connection conn = BookUserDAO.getConnection();
-		String sql = "Delete from addbook where id=?";
+		String sql = "DELETE FROM library_project.addbook WHERE id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		i = ps.executeUpdate();

@@ -16,6 +16,18 @@
 </head>
 
 <body>
+ <%
+  String mess=(String)session.getAttribute("getMessage");
+  if(mess!=null){
+	  %>
+<div class="alert alert-success alert-dismissible">
+  <a href="Home.jsp" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><%= mess %></strong>
+</div>
+  <% 
+  session.removeAttribute("getMessage");
+  }
+  %>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <img style="height: 30px; width: 30px" src="image/logo1.png"><a class="navbar-brand" href="#">Smart Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -31,7 +43,7 @@
       </ul>
       <li class="nav-item">
          <button type="button" class="btn btn-primary"><a style="color:whitesmoke; text-decoration: none;"
-              href="Login.jsp">User</a></button>
+              href="Login.jsp">User Login</a></button>
           <button type="button" class="btn btn-success"><a style="color:whitesmoke; text-decoration: none;"
               href="RegisterUser.jsp">User Register</a></button>
       </li>
@@ -50,7 +62,7 @@
 
           <p style="color: whitesmoke;">You Can Do Login With any one Account You Have For Books</p>
           <button type="button" class="btn btn-primary"><a style="color:whitesmoke; text-decoration: none;"
-              href="Login.jsp">Admin</a></button>
+              href="Login.jsp">Admin Login</a></button>
           <button type="button" class="btn btn-success"><a style="color:whitesmoke; text-decoration: none;"
               href="RegisterAdmin.jsp">Admin Register</a></button>
         </div>

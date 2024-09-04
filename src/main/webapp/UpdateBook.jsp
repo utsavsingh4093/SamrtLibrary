@@ -13,7 +13,8 @@
     <div class="login-container">
         <div class="login-box">
         <c:set value="${getid}" var="a"></c:set>
-            <h2>Update Book</h2>
+       <span style="display: flex;flex-direction: row" > <a href="AdminHome.jsp"><button type="submit" class="btn btn-danger">Go Back</button></a>
+            <h2 style="margin-left: 20px">Update Book</h2></span>
             <form action="updatepagedata" method="post">
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
             <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>

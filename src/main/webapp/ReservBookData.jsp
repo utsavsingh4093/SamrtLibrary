@@ -28,7 +28,7 @@
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
              <input type="hidden" name="sid" value='<c:out value="${v}"></c:out>'>
             <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>
-            <sql:query dataSource="${ds}" var="rs">select * from AddBook;</sql:query>
+            <sql:query dataSource="${ds}" var="rs">select * from AddBook where id='<c:out value="${a}"></c:out>';</sql:query>
                 <c:forEach items="${rs.rows}" var="row">
                 <div class="input-group">
                     <label for="username">Name Of Student</label>

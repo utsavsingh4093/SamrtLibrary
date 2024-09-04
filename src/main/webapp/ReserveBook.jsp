@@ -15,10 +15,9 @@
 </head>
 <body>
 
-	<a href="UserHome.jsp"><button type="submit"
-			class="btn btn-success">Back</button></a>
 	<h1 style="text-align: center; color: blue;">This is Reserve Books
 		Details</h1>
+		<a href="UserHome.jsp"><button style="margin-left: 30px" type="submit" class="btn btn-danger">Go Back</button></a>
 	<sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds"
 		url="jdbc:mysql://localhost:3306/library_project" user="root"
 		password="4093" />

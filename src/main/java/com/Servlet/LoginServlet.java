@@ -25,6 +25,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	
 	PrintWriter po=resp.getWriter();
 	 resp.setContentType("text/html");
+
 	 if(mebershipNumber.length()==8) {
 	 if(AdminDAO.getUserByNumberAndPassword(mebershipNumber, password)!=null)
 		{

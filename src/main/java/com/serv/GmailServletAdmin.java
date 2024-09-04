@@ -22,6 +22,8 @@ import com.DAO.UserDAO;
 import com.DTO.Admin;
 import com.DTO.User;
 
+import jakarta.mail.Session;
+
 class Appdata {
 	static Random random=new Random();
 	static long number= Math.abs(random.nextLong()%100000000);
@@ -29,7 +31,7 @@ class Appdata {
     public static void start(String pas,String email) {
            //String str=String.valueOf(number);
          GmailSender gmailSender=new GmailSender();
-         String from="cs20.utsavsingh@svceindore.ac.in";
+         String from="smartlibrary40@gmail.com";
          String to=email;
          String subject="Welcome to the Smart Library";
         String body="Dear : "+to+"\n"
@@ -85,7 +87,7 @@ public class GmailServletAdmin extends HttpServlet {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_project","root","4093");
             String s = "insert into admin(name,libraryName,address,email,role,password,membernumber) values(?,?,?,?,?,?,?)";
             ps = con.prepareStatement(s);
-            if(AdminDAO.getEmail(email).size()==0) {
+            if(AdminDAO.getEmail(email).size()==0 && UserDAO.getEmail(email).size()==0) {
             ps.setString(1, name);
             ps.setString(2, libr);
             ps.setString(3, address);
@@ -105,9 +107,10 @@ public class GmailServletAdmin extends HttpServlet {
             session.setAttribute("getEmail", email);
             }
             else {
-          	  out.println("This Email is Alerady Exist");
-          	  RequestDispatcher dispatcher = req.getRequestDispatcher("Home.jsp");
-      	        dispatcher.include(req, resp);
+//          	  out.println("This Email is Alerady Exist");
+            	HttpSession session=req.getSession();
+            	session.setAttribute("getMessage", "This Email is Alerady Exist so please try again..");
+          	 resp.sendRedirect("Home.jsp");
             }
         } catch (Exception e) {
            System.out.println(e);

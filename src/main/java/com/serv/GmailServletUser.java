@@ -21,15 +21,12 @@ import com.DAO.UserDAO;
 
 class App {
 	static Random random=new Random();
-	public static long genrateNumber(String role)
-	{
-			return Math.abs(random.nextLong()%1000000);
-	}
+	static long number= Math.abs(random.nextInt()%1000000);
 	//static long number=Math.abs(random.nextLong()%100000000);
     public static void start(String pas,String email,long number) {
            //String str=String.valueOf(number);
          GmailSender gmailSender=new GmailSender();
-         String from="cs20.utsavsingh@svceindore.ac.in";
+         String from="smartlibrary40@gmail.com";
          String to=email;
          String subject="Welcome to the Smart Library";
         String body="Dear : "+to+"\n"
@@ -85,14 +82,13 @@ public class GmailServletUser extends HttpServlet {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_project","root","4093");
             String s = "insert into student(name,email,role,password,membernumber) values(?,?,?,?,?)";
             ps = con.prepareStatement(s);
-            if(UserDAO.getEmail(email).size()==0) {
+            if(UserDAO.getEmail(email).size()==0 && AdminDAO.getEmail(email).size()==0) {
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, role);
             ps.setString(4, password);
-            long number=App.genrateNumber(role);
-            ps.setLong(5, number);
-            App.start(password,email,number);
+            ps.setLong(5, App.number);
+            App.start(password,email,App.number);
             int i = ps.executeUpdate();
             if (i == 1) {
                 resp.sendRedirect("Home.jsp");

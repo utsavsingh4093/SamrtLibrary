@@ -13,7 +13,7 @@
 <body>
 <h1 style="text-align: center; color: green;">There is Data Of Issue Books Table</h1>
 <sql:setDataSource driver="${getdriver}" var="ds" url="${geturl}" user="${getUser}" password="${getPass}"/>
-<sql:query dataSource="${ds}" var="rs">select issuebooks.id,addbook.Quantity,issuebooks.bookimg,issuebooks.studentname,issuebooks.bookname,issuebooks.status,issuebooks.userbooks,issuebooks.issuedate,issuebooks.returndate,issuebooks.authorname from student inner join issuebooks on student.id = issuebooks.sid inner join addbook on addbook.id = issuebooks.bookid;;</sql:query>
+<sql:query dataSource="${ds}" var="rs">select issuebooks.id,addbook.Quantity,issuebooks.bookimg,issuebooks.studentname,issuebooks.bookname,issuebooks.status,issuebooks.userbooks,issuebooks.issuedate,issuebooks.returndate,issuebooks.authorname from student inner join issuebooks on student.id = issuebooks.sid inner join addbook on addbook.id = issuebooks.bookid ;</sql:query>
 
 <a href="ViewBook.jsp"><button type="submit" class="btn btn-success">Back</button></a>
 
