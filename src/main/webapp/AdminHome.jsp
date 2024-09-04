@@ -43,7 +43,7 @@
       </nav>
 <%
   String message=(String)session.getAttribute("message");
-  if(message!=null){
+   if(message!=null ){
 	  %>
 <div class="alert alert-success alert-dismissible">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -53,6 +53,19 @@
   session.removeAttribute("message");
   }
   %>
+  <%
+  String getMessage=(String)session.getAttribute("getMessage");
+  if(getMessage!=null ){
+	  %>
+<div class="alert alert-success alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><%= getMessage %></strong>
+</div>
+  <% 
+  session.removeAttribute("getMessage");
+  }
+  %>
+  
       <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

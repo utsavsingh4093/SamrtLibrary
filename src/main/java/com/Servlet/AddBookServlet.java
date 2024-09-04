@@ -47,6 +47,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		resp.sendRedirect("AdminHome.jsp");
 		HttpSession session = req.getSession();
 		session.setAttribute("session", "Profile.jsp");
+		session.setAttribute("getMessage", "Book is Added Successfully in Library Thank you...");
 		RequestDispatcher requestDispatcher=req.getRequestDispatcher("AdminHome.jsp");
 		requestDispatcher.forward(req,resp);
 		po.close();
