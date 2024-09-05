@@ -19,7 +19,7 @@ import com.DAO.AdminDAO;
 import com.DAO.UserDAO;
 
 
-class App {
+class EmailClass {
 	private static Random random = new Random();
 
     public static long generateRandomNumber() {
@@ -68,7 +68,7 @@ public class GmailServletUser extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/html");
-        App a=new App();
+        EmailClass emailClass=new EmailClass();
 //        System.out.println("Your number is that : "+App.number);
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -87,9 +87,9 @@ public class GmailServletUser extends HttpServlet {
             ps.setString(2, email);
             ps.setString(3, role);
             ps.setString(4, password);
-            long number=App.generateRandomNumber();
+            long number=EmailClass.generateRandomNumber();
             ps.setLong(5, number);
-            App.start(password,email,number);
+            EmailClass.start(password,email,number);
             int i = ps.executeUpdate();
             con.close();
             if (i == 1) {

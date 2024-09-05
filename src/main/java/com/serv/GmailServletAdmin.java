@@ -24,7 +24,7 @@ import com.DTO.User;
 
 import jakarta.mail.Session;
 
-class Appdata {
+class EmaildataForAdmin {
 	private static Random random = new Random();
 
     public static long generateRandomNumber() {
@@ -75,7 +75,7 @@ public class GmailServletAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/html");
-        Appdata a=new Appdata();
+        EmaildataForAdmin emaildataForAdmin=new EmaildataForAdmin();
 //        System.out.println("Your number is that : "+App.number);
         String name = req.getParameter("name");
         String libr = req.getParameter("library");
@@ -98,9 +98,9 @@ public class GmailServletAdmin extends HttpServlet {
             ps.setString(4, email);
             ps.setString(5, role);
             ps.setString(6, password);
-            long number=Appdata.generateRandomNumber();
+            long number=EmaildataForAdmin.generateRandomNumber();
             ps.setLong(7, number);
-            Appdata.start(password,email,number);
+            EmaildataForAdmin.start(password,email,number);
             int i = ps.executeUpdate();
             con.close();
             if (i == 1) {
