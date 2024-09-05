@@ -60,11 +60,13 @@ class Appdata {
        {
            System.out.println("Email Sent successfully");
        }
-       else{
+       else
+       {
            System.out.println("Eamil failed");
        }
       
     }
+    
 }
 
 @WebServlet("/registerpageadmin")
@@ -110,10 +112,9 @@ public class GmailServletAdmin extends HttpServlet {
             session.setAttribute("getEmail", email);
             }
             else {
-//          	  out.println("This Email is Alerady Exist");
             	HttpSession session=req.getSession();
-            	session.setAttribute("getMessage", "This Email is Alerady Exist so please try again..");
-          	 resp.sendRedirect("Home.jsp");
+            	session.setAttribute("getMessage", "This Email is Alerady Exist so please try again with another mail..");
+          	    resp.sendRedirect("RegisterAdmin.jsp");
             }
         } catch (Exception e) {
            System.out.println(e);
