@@ -38,7 +38,7 @@ public class GmailSender {
 		Transport.send(message);
 		status=true;
 	} catch (Exception e) {
-		// TODO: handle exception
+		e.printStackTrace();
 	}
         return status;
     }

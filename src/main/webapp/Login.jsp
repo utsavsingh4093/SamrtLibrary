@@ -8,10 +8,13 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="CssFile/AddBook.css">
 </head>
-<body>
+<body style="background-color: lightblue;">
     <div class="login-container">
         <div class="login-box">
-            <h2>Login Page</h2>
+            <span style="display: flex;flex-direction: row" > 
+         <h2>Login Page</h2>
+        <a href="Home.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px; type="submit" class="btn">X</button></a>
+           </span>
            <form action="login" method="post">
                 <div class="input-group">
                     <label for="password">Member Ship Number</label>

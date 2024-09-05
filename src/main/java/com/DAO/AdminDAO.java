@@ -29,8 +29,7 @@ public class AdminDAO {
 			PreparedStatement ps=connection.prepareStatement(query);
 			ps.setString(1, meberShipNumber);
 			ps.setString(2, password);
-			ResultSet rs=ps.executeQuery();
-			
+			ResultSet rs=ps.executeQuery();			
 			while(rs.next())
 			{
 				user=new Admin();

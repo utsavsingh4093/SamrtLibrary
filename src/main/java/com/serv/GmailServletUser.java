@@ -71,8 +71,6 @@ public class GmailServletUser extends HttpServlet {
         App a=new App();
 //        System.out.println("Your number is that : "+App.number);
         String name = req.getParameter("name");
-        String libr = req.getParameter("library");
-        String address = req.getParameter("add");
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
         String role = req.getParameter("role");
