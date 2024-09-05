@@ -93,6 +93,7 @@ public class GmailServletUser extends HttpServlet {
             ps.setLong(5, number);
             App.start(password,email,number);
             int i = ps.executeUpdate();
+            con.close();
             if (i == 1) {
             	HttpSession session=req.getSession();
             	session.setAttribute("getMessage", "Your Registration is Succsess fully Thank You...");

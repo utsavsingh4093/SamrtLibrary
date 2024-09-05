@@ -66,8 +66,8 @@ $(document).ready(function(){
 <c:forEach items="${rs.rows}" var="row">
 <tr>
 <td>
-    <a href="issueBooks.jsp"><c:url var="imageUrl" value="/Book/${row.Book}" />
-    <img src="${imageUrl}" alt="Book Image" style="max-width: 50px;" /></a>
+    <c:url var="imageUrl" value="/Book/${row.Book}" />
+    <img src="${imageUrl}" alt="Book Image" style="max-width: 50px;" />
 </td>
 <td><c:out value="${row.BookName}"></c:out></td>
 <td><c:out value="${row.Author}"></c:out></td>

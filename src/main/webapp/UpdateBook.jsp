@@ -12,6 +12,7 @@
 <body>
     <div class="login-container">
         <div class="login-box">
+        <!-- Here I am getting a Bookid -->
         <c:set value="${getid}" var="a"></c:set>
         <span style="display: flex;flex-direction: row" > 
          <h2>Update Book</h2>

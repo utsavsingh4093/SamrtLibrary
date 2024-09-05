@@ -50,7 +50,7 @@
   }
   %>
 <c:set value="${getingreturndate}" var="a"></c:set>
-<h1 style="text-align: center; color: blue;">This Return Books Detail</h1>
+<h1 style="text-align: center; color: blue;">This Renew Books Detail</h1>
 <a href="UserHome.jsp"><button style="margin-left: 30px;border-radius: 50px;" type="submit" class="btn btn-danger">Go Back</button></a>
 <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>
  <sql:query dataSource="${ds}" var="rs">select * from issueBooks where sid='<c:out value="${getsId}"/>' and userbooks>0 and status='Issued';</sql:query>

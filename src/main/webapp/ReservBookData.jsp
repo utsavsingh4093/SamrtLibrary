@@ -24,7 +24,7 @@
             <%LocalDate date=LocalDate.now(); %>
             <%LocalDate afterday=date.plusDays(30); %>
            
-            <h2>Update Book</h2>
+            <h2>Reserve Book</h2>
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
              <input type="hidden" name="sid" value='<c:out value="${v}"></c:out>'>
             <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>
