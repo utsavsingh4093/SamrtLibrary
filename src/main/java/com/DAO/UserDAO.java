@@ -78,14 +78,14 @@ public class UserDAO {
 	return list;
 	}
 	
-	public static User FetchSingle(int id)
+	public static User FetchSingle(int studentId)
 	{
 		User user=null;
 		String sql="Select name from student where id=?";
 		try {
 			Connection con=UserDAO.getConnection();
 			PreparedStatement ps=con.prepareStatement(sql);
-			ps.setInt(1, id);
+			ps.setInt(1, studentId);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{

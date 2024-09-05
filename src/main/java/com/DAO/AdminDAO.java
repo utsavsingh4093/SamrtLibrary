@@ -20,27 +20,26 @@ public class AdminDAO {
 		}
 		return conn;
 	}
-	public static Admin getUserByNumberAndPassword(String meberShipNumber,String password)
-	{
-		Admin user=null;
+
+	public static Admin getUserByNumberAndPassword(String meberShipNumber, String password) {
+		Admin user = null;
 		try {
-			Connection connection=AdminDAO.getConnection();
-			String query="select * from admin where membernumber = ? and password = ?";
-			PreparedStatement ps=connection.prepareStatement(query);
+			Connection connection = AdminDAO.getConnection();
+			String query = "select * from admin where membernumber = ? and password = ?";
+			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, meberShipNumber);
 			ps.setString(2, password);
-			ResultSet rs=ps.executeQuery();			
-			while(rs.next())
-			{
-				user=new Admin();
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				user = new Admin();
 				user.setId(rs.getInt(1));
 				user.setName(rs.getString(2));
 				user.setRole(rs.getString(3));
 				user.setLibraryName(rs.getString(4));
 				user.setAddress(rs.getString(5));
-	         	user.setEmail(rs.getString(6));
+				user.setEmail(rs.getString(6));
 				user.setPassword(rs.getString(7));
-				user.setMemberShipNumber(rs.getString(8));	
+				user.setMemberShipNumber(rs.getString(8));
 			}
 			rs.close();
 			connection.close();
@@ -50,37 +49,36 @@ public class AdminDAO {
 		}
 		return user;
 	}
-	
-	public static List<Admin> getEmail(String email)
-	{
-		List<Admin> list=new ArrayList<Admin>();
-	
-	try {
-		String query="select * from admin where email=?";
-		Connection conn=AdminDAO.getConnection();
-		PreparedStatement ps=conn.prepareStatement(query);
-		ps.setString(1, email);
-		ResultSet rs=ps.executeQuery();
-		Admin admin = null;
-		while(rs.next()) {
-			admin=new Admin();
-			admin.setId(rs.getInt(1));
-			admin.setName(rs.getString(2));
-			admin.setLibraryName(rs.getString(3));
-			admin.setAddress(rs.getString(4));
-			admin.setEmail(rs.getString(5));
-			admin.setRole(rs.getString(6));
-			admin.setPassword(rs.getString(7));
-			admin.setMemberShipNumber(rs.getString(8));	
-			list.add(admin);
+
+	public static List<Admin> getEmail(String email) {
+		List<Admin> list = new ArrayList<Admin>();
+
+		try {
+			String query = "select * from admin where email=?";
+			Connection conn = AdminDAO.getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			Admin admin = null;
+			while (rs.next()) {
+				admin = new Admin();
+				admin.setId(rs.getInt(1));
+				admin.setName(rs.getString(2));
+				admin.setLibraryName(rs.getString(3));
+				admin.setAddress(rs.getString(4));
+				admin.setEmail(rs.getString(5));
+				admin.setRole(rs.getString(6));
+				admin.setPassword(rs.getString(7));
+				admin.setMemberShipNumber(rs.getString(8));
+				list.add(admin);
+			}
+			rs.close();
+			conn.close();
+			System.out.println(list.size() == 0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		rs.close();
-		conn.close();
-		System.out.println(list.size()==0);
-		
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-	return list;
+		return list;
 	}
 }

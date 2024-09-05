@@ -25,14 +25,14 @@ class EmailClass {
     public static long generateRandomNumber() {
         return Math.abs(random.nextLong() % 1000000);
     }
-    public static void start(String pas,String email,long number) {
+    public static void start(String pas,String email,long meberShipNumber) {
            //String str=String.valueOf(number);
          GmailSender gmailSender=new GmailSender();
          String from="smartlibrary40@gmail.com";
          String to=email;
          String subject="Welcome to the Smart Library";
         String body="Dear : "+to+"\n"
-        		+ "Your membership number- "+number+"\n"
+        		+ "Your membership number- "+meberShipNumber+"\n"
         		+ "Your Pssword- "+pas+"\n"
         		+ "\r\n"
         		+ "Welcome to the Smart Library\r\n"
@@ -87,9 +87,9 @@ public class GmailServletUser extends HttpServlet {
             ps.setString(2, email);
             ps.setString(3, role);
             ps.setString(4, password);
-            long number=EmailClass.generateRandomNumber();
-            ps.setLong(5, number);
-            EmailClass.start(password,email,number);
+            long meberShipNumber=EmailClass.generateRandomNumber();
+            ps.setLong(5, meberShipNumber);
+            EmailClass.start(password,email,meberShipNumber);
             int i = ps.executeUpdate();
             con.close();
             if (i == 1) {

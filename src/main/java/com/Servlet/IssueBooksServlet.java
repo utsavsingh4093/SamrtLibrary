@@ -26,7 +26,7 @@ public class IssueBooksServlet extends HttpServlet{
 		resp.setContentType("text/html");
 		int bookid=Integer.parseInt(req.getParameter("id"));
 		int sid=Integer.parseInt(req.getParameter("sid"));
-		String book=req.getParameter("book");
+		String bookImg=req.getParameter("book");
 		String studentName=req.getParameter("studentname");
 		String bookName=req.getParameter("bookname");
 		String authorName=req.getParameter("author");
@@ -39,7 +39,7 @@ public class IssueBooksServlet extends HttpServlet{
 		IssueBookDTO issueBookDTO=new IssueBookDTO();
 		issueBookDTO.setBookid(bookid);
 		issueBookDTO.setSid(sid);
-		issueBookDTO.setBook(book);
+		issueBookDTO.setBook(bookImg);
 		issueBookDTO.setStudentName(studentName);
 		issueBookDTO.setBookName(bookName);
 		issueBookDTO.setAuthor(authorName);

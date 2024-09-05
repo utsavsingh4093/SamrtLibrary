@@ -49,13 +49,13 @@ public static int insertBook(BookUser bookUser) throws SQLException
 	return 0;
 }
 
-public static BookUser fetch(int id) {
+public static BookUser fetch(int bookId) {
 	BookUser bookUser=new BookUser();
 	String query = "select * from addbook where id=?";
 	try {
 		Connection con = BookUserDAO.getConnection();
 		PreparedStatement ps=con.prepareStatement(query);
-		ps.setInt(1, id);
+		ps.setInt(1, bookId);
 		ResultSet rs=ps.executeQuery();  
 		while (rs.next()) {
 			 bookUser = new BookUser();
@@ -75,13 +75,13 @@ public static BookUser fetch(int id) {
 	return bookUser;
 }
 
-public static int deleteBookById(int id) {
+public static int deleteBookById(int bookId) {
 	int i = 0;
 	try {
 		Connection conn = BookUserDAO.getConnection();
 		String sql = "DELETE FROM library_project.addbook WHERE id=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, id);
+		ps.setInt(1, bookId);
 		i = ps.executeUpdate();
 		conn.close();
 	} catch (Exception e) {
@@ -134,7 +134,7 @@ try {
 }
 return list;
 }
-public static int updatebook(String Quantity,int id)
+public static int updatebook(String Quantity,int bookId)
 {
 	int i=0;
 	String query="update addbook set Quantity=? where id=?";
@@ -142,7 +142,7 @@ public static int updatebook(String Quantity,int id)
 		Connection connection=BookUserDAO.getConnection();
 		PreparedStatement ps=connection.prepareStatement(query);
 		ps.setString(1,Quantity);
-		ps.setInt(2, id);
+		ps.setInt(2, bookId);
 		i=ps.executeUpdate();
 		connection.close();
 	} catch (Exception e) {

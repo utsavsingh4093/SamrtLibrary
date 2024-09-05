@@ -32,11 +32,11 @@ public class ReserveBookServlet extends HttpServlet {
 		String bookQuantity = "1";
 
 		String issuedate = req.getParameter("issuedate");
-//For gettting Local Date
+          //For gettting Local Date
 		LocalDate date = LocalDate.parse(issuedate);
 		LocalDate afterDays = date.plusDays(30);
 		String returndate = String.valueOf(afterDays);
-
+       
 	   IssueBookDTO	issueBookDTO = new IssueBookDTO();
 		issueBookDTO.setBookid(bookid);
 		issueBookDTO.setSid(sid);

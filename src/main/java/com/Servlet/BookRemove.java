@@ -18,8 +18,8 @@ public class BookRemove extends HttpServlet {
 	    try {
 	        PrintWriter po = resp.getWriter();
 	        resp.setContentType("text/html");
-	        int id = Integer.parseInt(req.getParameter("id"));
-	         int i=BookUserDAO.deleteBookById(id);
+	        int bookId = Integer.parseInt(req.getParameter("id"));
+	         int i=BookUserDAO.deleteBookById(bookId);
 	         if(i>0)
 	         {
 	        	 resp.sendRedirect("ViewBook.jsp");

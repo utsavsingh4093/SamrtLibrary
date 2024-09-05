@@ -25,14 +25,14 @@ public static Connection getConnection()
 	
 	return connection;
 }
-public static IssueBookDTO getBookById(int id)
+public static IssueBookDTO getBookById(int issueBookId)
 {
 	IssueBookDTO issueBookDTO=new IssueBookDTO();
 	String query="select * from issuebooks where id=?";
 	try {
 		Connection connection=IssueBookDAO.getConnection();
 		PreparedStatement preparedStatement=connection.prepareStatement(query);
-		preparedStatement.setInt(1, id);
+		preparedStatement.setInt(1, issueBookId);
 		ResultSet rs=preparedStatement.executeQuery();
 		while(rs.next())
 		{
@@ -73,14 +73,14 @@ public static int insetIssueBookData(IssueBookDTO issueBookDTO) {
 	return i;
 }
 
-public static IssueBookDTO fetchSingleUser(int id)
+public static IssueBookDTO fetchSingleUser(int issueBookId)
 {
   IssueBookDTO issueBookDTO=null;
   String sql="select * from issuebooks where id=?";
   try {
 	Connection conn=IssueBookDAO.getConnection();
 	PreparedStatement ps=conn.prepareStatement(sql);
-	ps.setInt(1, id);
+	ps.setInt(1, issueBookId);
 	  ResultSet rs=ps.executeQuery();
 	  while(rs.next())
 	  {
@@ -122,7 +122,7 @@ public static int updateBook(IssueBookDTO issueBookDTO) throws SQLException{
 
 //Cretating method For Renew Book Updation
 
-public static int renewBook(String issudate,String returndate, int sid) throws SQLException
+public static int renewBook(String issudate,String returndate, int issueBookId) throws SQLException
 {
 	int i=0;
 	String query="update issuebooks set issuedate=?,returnDate=? where id=?";
@@ -131,19 +131,19 @@ public static int renewBook(String issudate,String returndate, int sid) throws S
 	PreparedStatement ps=connection.prepareStatement(query);
 	ps.setString(1, issudate);
 	ps.setString(2, returndate);
-	ps.setInt(3, sid);
+	ps.setInt(3, issueBookId);
 	i=ps.executeUpdate();
 	connection.close();
 	return i;
 }
-public static IssueBookDTO fetchSingleUserForReturnDate(int id)
+public static IssueBookDTO fetchSingleUserForReturnDate(int issueBookId)
 {
   IssueBookDTO issueBookDTO=null;
   String sql="select returndate from issuebooks where id=?";
   try {
 	Connection conn=IssueBookDAO.getConnection();
 	PreparedStatement ps=conn.prepareStatement(sql);
-	ps.setInt(1, id);
+	ps.setInt(1, issueBookId);
 	  ResultSet rs=ps.executeQuery();
 	  while(rs.next())
 	  {
@@ -176,7 +176,7 @@ public static int updateBookstatus(String status,String status1)
 	return i;
 }
 
-public static int updateBookDetails(String status,String quantity,int id)
+public static int updateBookDetails(String status,String quantity,int issueBookId)
 {
 	int i=0;
 	String sql="update issuebooks set status=?,userbooks=? where id=?";
@@ -185,7 +185,7 @@ public static int updateBookDetails(String status,String quantity,int id)
 		PreparedStatement ps=con.prepareStatement(sql);
 		ps.setString(1, status);
 		ps.setString(2, quantity);
-		ps.setInt(3, id);
+		ps.setInt(3, issueBookId);
 	 i=ps.executeUpdate();
 		con.close();
 	} catch (Exception e) {

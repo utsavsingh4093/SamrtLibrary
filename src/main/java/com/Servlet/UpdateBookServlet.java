@@ -18,18 +18,18 @@ public class UpdateBookServlet extends HttpServlet{
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	 resp.setContentType("text/html");
      PrintWriter po = resp.getWriter();
-     String idParam = req.getParameter("id");
-     String bookName1 = req.getParameter("bookname");
-     String authorName1 = req.getParameter("author");
-     String edition1 = req.getParameter("edition");
-     String quantity1 = req.getParameter("quantity");
-     int id = Integer.parseInt(idParam);  
+     String bookId = req.getParameter("id");
+     String bookName = req.getParameter("bookname");
+     String authorName = req.getParameter("author");
+     String bookEdition = req.getParameter("edition");
+     String bookQuantity = req.getParameter("quantity");
+     int id = Integer.parseInt(bookId);  
      BookUser bookUser=new BookUser();
      bookUser.setId(id);
-     bookUser.setBookName(bookName1);
-     bookUser.setAuthorName(authorName1);
-     bookUser.setEdition(edition1);
-     bookUser.setQuantity(quantity1); 
+     bookUser.setBookName(bookName);
+     bookUser.setAuthorName(authorName);
+     bookUser.setEdition(bookEdition);
+     bookUser.setQuantity(bookQuantity); 
      
      try {
             

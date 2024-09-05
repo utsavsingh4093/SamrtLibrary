@@ -17,9 +17,9 @@ public class UpdateBook1 extends HttpServlet{
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	PrintWriter po=resp.getWriter();
 	 resp.setContentType("text/html"); 
-	 int id=Integer.parseInt(req.getParameter("id"));
+	 int bookId=Integer.parseInt(req.getParameter("id"));
     HttpSession session=req.getSession();
-	 session.setAttribute("getid",id);
+	 session.setAttribute("getid",bookId);
 	 
 RequestDispatcher requestDispatcher=req.getRequestDispatcher("/UpdateBook.jsp");
 requestDispatcher.forward(req, resp);

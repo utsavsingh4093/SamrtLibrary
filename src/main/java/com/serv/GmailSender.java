@@ -14,16 +14,16 @@ public class GmailSender {
     {
         boolean status=false;
 //LOGIC
-        Properties props=new Properties();
-        props.put("mail.smtp.auth",true);
-        props.put("mail.smtp.starttls.enable",true);
-        props.put("mail.smtp.port","587");
-        props.put("mail.smtp.host","smtp.gmail.com");
+        Properties properties=new Properties();
+        properties.put("mail.smtp.auth",true);
+        properties.put("mail.smtp.starttls.enable",true);
+        properties.put("mail.smtp.port","587");
+        properties.put("mail.smtp.host","smtp.gmail.com");
 
         final String username="smartlibrary40@gmail.com";
         final String password="yfkr moxe tbrw zdlh";
        
-	Session session=Session.getInstance(props, new Authenticator() {
+	Session session=Session.getInstance(properties, new Authenticator() {
 	protected PasswordAuthentication getPasswordAuthentication(){
 		return new PasswordAuthentication(username, password);
 	}

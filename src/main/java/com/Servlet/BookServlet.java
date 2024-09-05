@@ -12,33 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/issuebooksdata")
-public class BookServlet extends HttpServlet{
-@Override
-protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-PrintWriter printWriter=resp.getWriter();
-resp.setContentType("text/html");
+public class BookServlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-int id=Integer.parseInt(req.getParameter("id"));
-HttpSession session=req.getSession();
-session.setAttribute("getid", id);
+		PrintWriter printWriter = resp.getWriter();
+		resp.setContentType("text/html");
 
-String driver="com.mysql.cj.jdbc.Driver";
-HttpSession session1=req.getSession();
-session.setAttribute("getdriver", driver);
+		int bookId = Integer.parseInt(req.getParameter("id"));
+		HttpSession session = req.getSession();
+		session.setAttribute("getid", bookId);
 
-String url="jdbc:mysql://localhost:3306/library_project";
-HttpSession session2=req.getSession();
-session.setAttribute("geturl", url);
+		String driver = "com.mysql.cj.jdbc.Driver";
+		HttpSession session1 = req.getSession();
+		session.setAttribute("getdriver", driver);
 
-String user="root";
-HttpSession session3=req.getSession();
-session.setAttribute("getUser", user);
+		String url = "jdbc:mysql://localhost:3306/library_project";
+		HttpSession session2 = req.getSession();
+		session.setAttribute("geturl", url);
 
-String pass="4093";
-HttpSession session4=req.getSession();
-session4.setAttribute("getPass", pass);
+		String user = "root";
+		HttpSession session3 = req.getSession();
+		session.setAttribute("getUser", user);
 
-RequestDispatcher requestDispatcher=req.getRequestDispatcher("Bookissue.jsp");
-requestDispatcher.forward(req,resp);
-}
+		String password = "4093";
+		HttpSession session4 = req.getSession();
+		session4.setAttribute("getPass", password);
+
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("Bookissue.jsp");
+		requestDispatcher.forward(req, resp);
+	}
 }

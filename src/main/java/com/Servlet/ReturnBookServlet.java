@@ -32,10 +32,10 @@ public class ReturnBookServlet extends HttpServlet{
 	   //po.print(id);
 	    IssueBookDTO issueBookDTO = IssueBookDAO.fetchSingleUser(id);
        BookUser bookUser=BookUserDAO.fetch(bookid);
-	    String quantity=bookUser.getQuantity();//Total book quantity
+	    String bookQuantity=bookUser.getQuantity();//Total book quantity
 	    String updateQuantity=issueBookDTO.getIssueDate();//Getting User Issue Book Quantity
 	 
-	   String datareturn=String.valueOf(Integer.parseInt(quantity)+Integer.parseInt(updateQuantity));//Updating The Quantity
+	   String datareturn=String.valueOf(Integer.parseInt(bookQuantity)+Integer.parseInt(updateQuantity));//Updating The Quantity
 	   if (issueBookDTO != null) {
 	        issueBookDTO.setStatus("NotIssued");
 	        issueBookDTO.setReturnDate(String.valueOf(returndate));

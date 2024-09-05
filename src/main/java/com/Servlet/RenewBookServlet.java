@@ -1,10 +1,9 @@
 package com.Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +23,7 @@ public class RenewBookServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
+       //  PrintWriter printWriter = resp.getWriter();
         
         try {
             int id = Integer.parseInt(req.getParameter("id"));
