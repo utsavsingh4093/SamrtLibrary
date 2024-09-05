@@ -94,6 +94,8 @@ public class GmailServletUser extends HttpServlet {
             App.start(password,email,number);
             int i = ps.executeUpdate();
             if (i == 1) {
+            	HttpSession session=req.getSession();
+            	session.setAttribute("getMessage", "Your Registration is Succsess fully Thank You...");
                 resp.sendRedirect("Home.jsp");
             } else {
             	resp.sendRedirect("Errorjsp.jsp");
@@ -101,6 +103,7 @@ public class GmailServletUser extends HttpServlet {
             HttpSession session=req.getSession();
             session.setAttribute("getName", name);
             session.setAttribute("getEmail", email);
+            
             }
             else {
             	HttpSession session=req.getSession();

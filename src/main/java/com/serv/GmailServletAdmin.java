@@ -103,6 +103,8 @@ public class GmailServletAdmin extends HttpServlet {
             Appdata.start(password,email,number);
             int i = ps.executeUpdate();
             if (i == 1) {
+            	HttpSession session=req.getSession();
+            	session.setAttribute("getMessage", "Your Registration is Succsess fully Thank You...");
                 resp.sendRedirect("Home.jsp");
             } else {
             	resp.sendRedirect("Errorjsp.jsp");

@@ -14,28 +14,27 @@
     
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Library</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="Home.jsp">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
- </div>
   
     <!-- Container for the registration form -->
+          <%
+	String mess = (String) session.getAttribute("getMessage");
+	if (mess != null) {
+	%>
+	<div class="alert alert-danger alert-dismissible">
+		<a href="RegisterUser.jsp" class="close" data-dismiss="alert"
+			aria-label="close">&times;</a> <strong><%=mess%></strong>
+	</div>
+	<%
+	session.removeAttribute("getMessage");
+	}
+	%>
      
     <div style="margin: 60px;" class="container">
       <!-- Title of the form -->
-      <div style="color: brown;" class="title">Registration Form</div>
-      <hr>
+      <span style="display: flex;flex-direction: row" > 
+         <h2  style="color: brown;" class="title">Registration Form</h2>
+        <a href="Home.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px;margin-left: 350px" type="submit" class="btn">X</button></a>
+           </span>
       <link rel="stylesheet" href="CssFile/Registercss.css">
       <div class="content">
         <!-- Registration form Of Library -->
