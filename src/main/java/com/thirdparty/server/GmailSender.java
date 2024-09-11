@@ -1,4 +1,4 @@
-package com.serv;
+package com.thirdparty.server;
 
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ public class GmailSender {
     public boolean sendEmail(String from,String to,String subject,String body)
     {
         boolean status=false;
-//LOGIC
+
         Properties properties=new Properties();
         properties.put("mail.smtp.auth",true);
         properties.put("mail.smtp.starttls.enable",true);

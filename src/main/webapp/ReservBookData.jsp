@@ -19,12 +19,18 @@
      <div class="login-container">
         <div class="login-box">
   <c:set value="${getbookId}" var="a" ></c:set>
-            <c:set value="${getsId}" var="v"></c:set>          
+            <c:set value="${getsId}" var="v"></c:set>    
+             
+              <span style="display: flex;flex-direction: row" > 
+         <h2>Reserve Book</h2>
+        <a href="issueBooks.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px; type="submit" class="btn">X</button></a>
+           </span>
+                
             <form action="reservebook" method="post">
             <%LocalDate date=LocalDate.now(); %>
             <%LocalDate afterday=date.plusDays(30); %>
            
-            <h2>Reserve Book</h2>
+            
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
              <input type="hidden" name="sid" value='<c:out value="${v}"></c:out>'>
             <sql:setDataSource driver="com.mysql.cj.jdbc.Driver" var="ds" url="jdbc:mysql://localhost:3306/library_project" user="root" password="4093"/>
@@ -56,7 +62,7 @@
                     <input type="text" id="bookquantity" name="bookquantity" value="1" readonly>
                 </div>
                 </c:forEach>
-                <sql:query dataSource="${ds}" var="ro">select returndate from issuebooks where status='Issued';</sql:query>
+                <sql:query dataSource="${ds}" var="ro">select returndate from issuebooks where status='Issued' and bookid='<c:out value="${a}"></c:out>';</sql:query>
                 <div class="input-group">
                     <label for="password">Select Issuedate According to You</label>
                    <select name="issuedate" required>

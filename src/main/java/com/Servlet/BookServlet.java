@@ -1,4 +1,4 @@
-package com.Servlet;
+package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/issuebooksdata")
 public class BookServlet extends HttpServlet {
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		PrintWriter printWriter = resp.getWriter();
 		resp.setContentType("text/html");

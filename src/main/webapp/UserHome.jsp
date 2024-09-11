@@ -75,7 +75,8 @@
 	%>
 	<div class="alert alert-success alert-dismissible">
 		<a href="UserHome.jsp" class="close" data-dismiss="alert"
-			aria-label="close">&times;</a> <strong><%=mess%></strong>
+			aria-label="close">&times;</a> 
+			<strong><%=mess%></strong>
 	</div>
 	<%
 	session.removeAttribute("messages");

@@ -14,12 +14,14 @@
         <div class="login-box">
         <c:set value="${getid}" var="a"></c:set>
         <c:set value="${getsId}" var="v"></c:set>
-        
-            
+
+        <span style="display: flex;flex-direction: row" > 
+         <h2>Issue Book</h2>
+        <a href="issueBooks.jsp"><button style="padding-top: 5px;padding-bottom : 5px; background-color: #dc3545;border-radius: 50px; type="submit" class="btn">X</button></a>
+           </span>
             <form action="issue" method="post">
             <%LocalDate date=LocalDate.now(); %>
             <%LocalDate afterday=date.plusDays(30); %>
-            <h2>Issue Book</h2>
              <input type="hidden" name="id" value='<c:out value="${a}"></c:out>'>
              <input type="hidden" name="sid" value='<c:out value="${v}"></c:out>'>
             <sql:setDataSource driver="${getdriver}" var="ds" url="${geturl}" user="${getUser}" password="${getPass}"/>

@@ -1,4 +1,4 @@
-package com.DAO;
+package com.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.DTO.Admin;
+import com.dto.Admin;
 
 public class AdminDAO {
 	public static Connection getConnection() {

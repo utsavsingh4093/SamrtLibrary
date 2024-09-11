@@ -1,4 +1,4 @@
-package com.serv;
+package com.thirdparty.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,61 +17,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.DAO.AdminDAO;
-import com.DAO.UserDAO;
-import com.DTO.Admin;
-import com.DTO.User;
+import com.dao.AdminDAO;
+import com.dao.UserDAO;
+import com.dto.Admin;
+import com.dto.User;
 
 import jakarta.mail.Session;
 
 class EmaildataForAdmin {
 	private static Random random = new Random();
 
-    public static long generateRandomNumber() {
-        return Math.abs(random.nextLong() % 100000000);
-    }
-    public static void start(String password,String email,long meberShipNumber) {
-           //String str=String.valueOf(number);
-         GmailSender gmailSender=new GmailSender();
-         String from="smartlibrary40@gmail.com";
-         String to=email;
-         String subject="Welcome to the Smart Library";
-        String body="Dear : "+to+"\n"
-        		+ "Your membership number- "+meberShipNumber+"\n"
-        		+ "Your Pssword- "+password+"\n"
-        		+ "\r\n"
-        		+ "Welcome to the Smart Library\r\n"
-        		+ "\r\n"
-        		+ "We are delighted to have you with us and excited for \r\n"
-        		+ "you to explore oue extensive collection and innovative \r\n"
-        		+ "resources. if you have any questions or need\r\n"
-        		+ "assistance, please don't hesitate to reach out.\r\n"
-        		+ "\r\n"
-        		+ "we lookforward to supporting your learning and\r\n"
-        		+ "research needs.\r\n"
-        		+ "\r\n"
-        		+ "Best regards. \r\n"
-        		+ "\r\n"
-        		+ from+"\n"
-        		+ "Smart Library Support Team"+"\n"
-        		+ "Smart Library"+"\n";
-       boolean b=gmailSender.sendEmail(from,to,subject,body);
-       if(b)
-       {
-           System.out.println("Email Sent successfully");
-       }
-       else
-       {
-           System.out.println("Eamil failed");
-       }
-      
-    }
-    
+	public static long generateRandomNumber() {
+		return Math.abs(random.nextLong() % 100000000);
+	}
+
+	public static void start(String password, String email, long meberShipNumber) {
+		// String str=String.valueOf(number);
+		GmailSender gmailSender = new GmailSender();
+		String from = "smartlibrary40@gmail.com";
+		String to = email;
+		String subject = "Welcome to the Smart Library";
+		String body = "Dear : " + to + "\n" + "Your membership number- " + meberShipNumber + "\n" + "Your Pssword- "
+				+ password + "\n" + "\r\n" + "Welcome to the Smart Library\r\n" + "\r\n"
+				+ "We are delighted to have you with us and excited for \r\n"
+				+ "you to explore oue extensive collection and innovative \r\n"
+				+ "resources. if you have any questions or need\r\n"
+				+ "assistance, please don't hesitate to reach out.\r\n" + "\r\n"
+				+ "we lookforward to supporting your learning and\r\n" + "research needs.\r\n" + "\r\n"
+				+ "Best regards. \r\n" + "\r\n" + from + "\n" + "Smart Library Support Team" + "\n" + "Smart Library"
+				+ "\n";
+		boolean b = gmailSender.sendEmail(from, to, subject, body);
+		if (b) {
+			System.out.println("Email Sent successfully");
+		} else {
+			System.out.println("Eamil failed");
+		}
+
+	}
+
 }
 
 @WebServlet("/registerpageadmin")
 public class GmailServletAdmin extends HttpServlet {
-    @Override
+	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/html");
@@ -83,6 +71,11 @@ public class GmailServletAdmin extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
         String role = req.getParameter("role");
+        if (email != null) {
+			validate_code_source obj_validate_code_source = new validate_code_source();
+			boolean exists = obj_validate_code_source.isAddressValid(email);
+			if (exists == true) {
+
         Connection con = null;
         PreparedStatement ps = null;
         
@@ -123,5 +116,14 @@ public class GmailServletAdmin extends HttpServlet {
            System.out.println(e);
             out.println("Error: " + e.getMessage());
         }
+			}
+			
+        }
+        else {
+			HttpSession session = req.getSession();
+			session.setAttribute("getMessage",
+					"This Email Address is Not Exist try with another email...");
+			resp.sendRedirect("RegisterUser.jsp");
+		}
     }
 }

@@ -28,14 +28,15 @@
                     <input type="text" name="edition" id="edition" placeholder="Enter Book Edition" required>
                 </div>
                 <div class="input-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="text" name="quantity" id="quantity" placeholder="Enter Book Quantity" required>
+                    <label id="message" for="quantity">Quantity</label>
+                    <input type="text" name="quantity" id="quantityy" placeholder="Enter Book Quantity" oninput="fetchData()" required>
+                    <script src="JavaScript/MyFile.js"></script>
                 </div>
                 <div class="upload-container">
                     <h2>Upload File</h2>
                     <input type="file" name="bimg" id="bookfile" class="form-control-file" required>
                 </div><br><br>
-                <button type="submit">Add Book</button>
+                <button id="hidingbutton" type="submit">Add Book</button>
             </form>
         </div>
     </div>

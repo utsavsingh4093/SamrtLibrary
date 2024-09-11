@@ -63,6 +63,7 @@
 <td>Author Name</td>
 <td>Edition</td>
 <td>Books Quantity</td>
+<td>Issue Date</td>
 <td>Return Date</td>
 <td>Issue</td>
 </tr>
@@ -78,13 +79,15 @@
 <td><c:out value="${row.Authorname}"></c:out></td>
 <td><c:out value="${row.Edition}" /></td>
 <td><c:out value="${row.userbooks}" /></td>
-<td><c:out value="${row.returndate}"></c:out></td>
-<td>
+
 <form action="newbooks" method="post">
+<td><input type="date" name="issuedate" value='<c:out value="${row.issuedate}"></c:out>'></td>
+<td><input type="date" name="returndate" value='<c:out value="${row.returndate}"></c:out>'></td>
+<td>
     <input type="hidden" name="id" value="${row.id}"/>
     <button type="submit" class="btn btn-success">Renew</button>
+    
 </form>
-</td>
 </tr>
 </c:forEach>
 <tbody>

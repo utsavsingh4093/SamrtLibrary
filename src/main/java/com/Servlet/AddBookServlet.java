@@ -1,9 +1,8 @@
-package com.Servlet;
+package com.servlet;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.servlet.http.HttpSession;
-import com.DAO.BookUserDAO;
-import com.DTO.BookUser;
+
+import com.dao.BookUserDAO;
+import com.dto.BookUser;
 
 @WebServlet("/addingbook")
 @MultipartConfig
@@ -52,7 +52,6 @@ public class AddBookServlet extends HttpServlet {
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("AdminHome.jsp");
 				requestDispatcher.forward(req, resp);
 				po.close();
-
 			} else {
 				resp.sendRedirect("Login.jsp");
 			}

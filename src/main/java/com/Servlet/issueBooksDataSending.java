@@ -1,10 +1,9 @@
 package com.servlet;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,24 +16,30 @@ import com.dao.IssueBookDAO;
 import com.dto.BookUser;
 import com.dto.IssueBookDTO;
 
-@WebServlet("/issue")
-public class IssueBooksServlet extends HttpServlet {
+@WebServlet("/issuebooksservel")
+public class issueBooksDataSending extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter printWrite = resp.getWriter();
 		resp.setContentType("text/html");
+
 		int bookid = Integer.parseInt(req.getParameter("id"));
 		int sid = Integer.parseInt(req.getParameter("sid"));
-		String bookImg = req.getParameter("book");
 		String studentName = req.getParameter("studentname");
-		String bookName = req.getParameter("bookname");
-		String authorName = req.getParameter("author");
-		String edition = req.getParameter("edition");
-		String bookQuantity = req.getParameter("bookquantity");
-		String statue = req.getParameter("status");
-		String issueDate = req.getParameter("issuedate");
-		String returnDate = req.getParameter("returndate");
+
+		BookUser bookUser = BookUserDAO.fetch(bookid);
+
+		String bookImg = bookUser.getBookimg();
+		String bookName = bookUser.getBookName();
+		String authorName = bookUser.getAuthorName();
+		String edition = bookUser.getEdition();
+
+		String bookQuantity = "1";
+		String statue = "Issued";
+
+		String issueDate = String.valueOf(req.getParameter("issuedate"));
+		String returnDate = String.valueOf(req.getParameter("returndate"));
 
 		IssueBookDTO issueBookDTO = new IssueBookDTO();
 		issueBookDTO.setBookid(bookid);
@@ -51,7 +56,7 @@ public class IssueBooksServlet extends HttpServlet {
 
 		int i = IssueBookDAO.insetIssueBookData(issueBookDTO);
 		if (i > 0) {
-			String Quantity = req.getParameter("quantityInput");// Total Book Available in library
+			String Quantity = req.getParameter("bookQuantity");// Total Book Available in library
 			String availableQuantity = String.valueOf(Integer.parseInt(Quantity) - Integer.parseInt(bookQuantity));
 			int quantityData = Integer.parseInt(availableQuantity);
 			int j = BookUserDAO.updatebook(availableQuantity, bookid);
@@ -64,9 +69,7 @@ public class IssueBooksServlet extends HttpServlet {
 				ses.setAttribute("getQuantity", availableQuantity);
 			}
 		} else {
-			resp.sendRedirect("Bookissue.jsp");
+			resp.sendRedirect("issueBooks.jsp");
 		}
-
 	}
-
 }

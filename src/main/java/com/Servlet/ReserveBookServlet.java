@@ -1,4 +1,4 @@
-package com.Servlet;
+package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.DAO.IssueBookDAO;
-import com.DTO.IssueBookDTO;
+import com.dao.IssueBookDAO;
+import com.dto.IssueBookDTO;
 
 @WebServlet("/reservebook")
 public class ReserveBookServlet extends HttpServlet {
@@ -32,12 +32,11 @@ public class ReserveBookServlet extends HttpServlet {
 		String bookQuantity = "1";
 
 		String issuedate = req.getParameter("issuedate");
-          //For gettting Local Date
 		LocalDate date = LocalDate.parse(issuedate);
 		LocalDate afterDays = date.plusDays(30);
 		String returndate = String.valueOf(afterDays);
-       
-	   IssueBookDTO	issueBookDTO = new IssueBookDTO();
+
+		IssueBookDTO issueBookDTO = new IssueBookDTO();
 		issueBookDTO.setBookid(bookid);
 		issueBookDTO.setSid(sid);
 		issueBookDTO.setBook(bookImg);
