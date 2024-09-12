@@ -209,6 +209,5 @@ public class IssueBookDAO {
 		}
 		return issueBookDTO;
 	}
-	
-	
+
 }

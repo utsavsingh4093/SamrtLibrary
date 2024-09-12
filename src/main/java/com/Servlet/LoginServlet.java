@@ -1,9 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
-import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +12,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
 import com.dao.AdminDAO;
-import com.dao.IssueBookDAO;
 import com.dao.UserDAO;
 import com.dto.Admin;
-import com.dto.BookUser;
 import com.dto.User;
 
 @WebServlet("/login")
@@ -55,14 +51,12 @@ public class LoginServlet extends HttpServlet {
 				User user = UserDAO.getUserByNumberAndPassword(mebershipNumber, password);
 
 				HttpSession session = req.getSession();
-				int studId=user.getId();
 				session.setAttribute("getsId", user.getId());
 				session.setAttribute("getemail", user.getEmail());
 				session.setAttribute("getName", user.getName());
 				req.setAttribute("message", "Login Successfuly..");
 				RequestDispatcher requestDispatcher = req.getRequestDispatcher("UserHome.jsp");
 				requestDispatcher.forward(req, resp);
-				
 			} else {
 //				resp.setContentType("text/html");
 //				po.print("<h3 style='color:red'>Member Ship Number and Password didn't Match");
