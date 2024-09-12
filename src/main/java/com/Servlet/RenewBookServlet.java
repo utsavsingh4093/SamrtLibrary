@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dao.IssueBookDAO;
 import com.dto.IssueBookDTO;
+import com.logic.datepicker.DateMatching;
 
 @WebServlet("/newbooks")
 public class RenewBookServlet extends HttpServlet {
@@ -27,7 +28,7 @@ public class RenewBookServlet extends HttpServlet {
 
 		try {
 			int id = Integer.parseInt(req.getParameter("id"));
-
+            int bookId=Integer.parseInt(req.getParameter("bookid"));
 			IssueBookDTO issueBookDTO = IssueBookDAO.fetchSingleUserForReturnDate(id);
 			String dateOfReturn = issueBookDTO.getReturnDate();
 
@@ -41,11 +42,17 @@ public class RenewBookServlet extends HttpServlet {
 			System.out.println("Date Of Current : " + currentDate);
 			System.out.println("Date Of issue : " + issueDate);
 			System.out.println("Date Of returndate : " + returnDatee);
-
+			
+			String status = "Issued";
+			
+			//Doing For Return Book
+			if(DateMatching.dateCheckingForReturn(issueDate, returnDatee, bookId)) {
+			
 			if (currentDate.isEqual(LocalDate.parse(dateOfReturn))) {
-				String status = "Issued";
+				
 				String status1 = "Reserved";
-				int i = IssueBookDAO.updateBookstatus(status, status1);
+				String userBooks="1";
+				int i = IssueBookDAO.updateBookstatus(status,userBooks, status1);
 				if (i > 0) {
 					int j = IssueBookDAO.updateBookDetails("NotIssued", "0", id);
 					if (j > 0) {
@@ -75,11 +82,18 @@ public class RenewBookServlet extends HttpServlet {
 						+ returnDatee + ". Thank you.");
 				resp.sendRedirect("RenewBook.jsp");
 			}
-
-		} catch (NumberFormatException | SQLException e) {
+			}
+			else {
+				HttpSession session = req.getSession();
+				session.setAttribute("mess", "You can't renew the book On That Date Becase this book is alerady Given to some one from library Thank you.");
+				resp.sendRedirect("RenewBook.jsp");
+			}
+		}
+			catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 
 		}
+		
 
 	}
 }

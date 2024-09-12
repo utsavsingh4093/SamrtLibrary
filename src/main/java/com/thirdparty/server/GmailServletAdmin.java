@@ -66,36 +66,33 @@ public class GmailServletAdmin extends HttpServlet {
         EmaildataForAdmin emaildataForAdmin=new EmaildataForAdmin();
 //        System.out.println("Your number is that : "+App.number);
         String name = req.getParameter("name");
-        String libr = req.getParameter("library");
+        String libraryName = req.getParameter("library");
         String address = req.getParameter("add");
         String email = req.getParameter("email");
         String password = req.getParameter("pass");
         String role = req.getParameter("role");
+        
+        long meberShipNumber=EmaildataForAdmin.generateRandomNumber();
+        String memberNumber=String.valueOf(meberShipNumber);
         if (email != null) {
-			validate_code_source obj_validate_code_source = new validate_code_source();
+			GmailChecking obj_validate_code_source = new GmailChecking();
 			boolean exists = obj_validate_code_source.isAddressValid(email);
 			if (exists == true) {
-
-        Connection con = null;
-        PreparedStatement ps = null;
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_project","root","4093");
-            String s = "insert into admin(name,libraryName,address,email,role,password,membernumber) values(?,?,?,?,?,?,?)";
-            ps = con.prepareStatement(s);
             if(AdminDAO.getEmail(email).size()==0 && UserDAO.getEmail(email).size()==0) {
-            ps.setString(1, name);
-            ps.setString(2, libr);
-            ps.setString(3, address);
-            ps.setString(4, email);
-            ps.setString(5, role);
-            ps.setString(6, password);
-            long meberShipNumber=EmaildataForAdmin.generateRandomNumber();
-            ps.setLong(7, meberShipNumber);
+            Admin admin=new Admin();
+            
+             admin.setName(name);
+             admin.setLibraryName(libraryName);
+             admin.setAddress(address);
+             admin.setEmail(email);
+             admin.setRole(role);
+             admin.setPassword(password);
+             admin.setMemberShipNumber(memberNumber);
+             
             EmaildataForAdmin.start(password,email,meberShipNumber);
-            int i = ps.executeUpdate();
-            con.close();
+            int i = AdminDAO.InsertAdmin(admin);
             if (i == 1) {
             	HttpSession session=req.getSession();
             	session.setAttribute("getMessage", "Your Registration is Succsess fully Thank You...");

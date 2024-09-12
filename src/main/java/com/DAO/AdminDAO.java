@@ -21,6 +21,26 @@ public class AdminDAO {
 		return conn;
 	}
 
+	public static int InsertAdmin(Admin admin)
+	{
+		int i=0;
+        String sqlQuery = "insert into admin(name,libraryName,address,email,role,password,membernumber) values(?,?,?,?,?,?,?)";
+		try {
+			Connection connection=AdminDAO.getConnection();
+			PreparedStatement preparedStatement=connection.prepareStatement(sqlQuery);
+			preparedStatement.setString(1, admin.getName());
+			preparedStatement.setString(2, admin.getLibraryName());
+			preparedStatement.setString(3, admin.getAddress());
+			preparedStatement.setString(4, admin.getEmail());
+			preparedStatement.setString(5, admin.getRole());
+			preparedStatement.setString(6, admin.getPassword());
+			preparedStatement.setString(7, admin.getMemberShipNumber());
+			i=preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return i;
+	}
 	public static Admin getUserByNumberAndPassword(String meberShipNumber, String password) {
 		Admin user = null;
 		try {

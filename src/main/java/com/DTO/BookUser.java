@@ -2,6 +2,7 @@ package com.dto;
 
 public class BookUser {
 	private int id;
+	private String adminName;
 	private String bookName;
 	private String authorName;
 	private String edition;
@@ -54,6 +55,14 @@ public class BookUser {
 
 	public void setBookimg(String bookimg) {
 		this.bookimg = bookimg;
+	}
+
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 
 }

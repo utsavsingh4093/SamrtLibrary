@@ -31,13 +31,14 @@ public class BookUserDAO {
 		int i = 0;
 		try {
 			Connection connection = BookUserDAO.getConnection();
-			String query = "insert into addbook(BookName,Author,Edition,Quantity,Book) values(?,?,?,?,?)";
+			String query = "insert into addbook(adminName,BookName,Author,Edition,Quantity,Book) values(?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, bookUser.getBookName());
-			preparedStatement.setString(2, bookUser.getAuthorName());
-			preparedStatement.setString(3, bookUser.getEdition());
-			preparedStatement.setString(4, bookUser.getQuantity());
-			preparedStatement.setString(5, bookUser.getBookimg());
+			preparedStatement.setString(1, bookUser.getAdminName());
+			preparedStatement.setString(2, bookUser.getBookName());
+			preparedStatement.setString(3, bookUser.getAuthorName());
+			preparedStatement.setString(4, bookUser.getEdition());
+			preparedStatement.setString(5, bookUser.getQuantity());
+			preparedStatement.setString(6, bookUser.getBookimg());
 			i = preparedStatement.executeUpdate();
 			connection.close();
 		} catch (Exception e) {
@@ -57,11 +58,11 @@ public class BookUserDAO {
 			while (rs.next()) {
 				bookUser = new BookUser();
 				bookUser.setId(rs.getInt(1));
-				bookUser.setBookName(rs.getString(2));
-				bookUser.setAuthorName(rs.getString(3));
-				bookUser.setEdition(rs.getString(4));
-				bookUser.setQuantity(rs.getString(5));
-				bookUser.setBookimg(rs.getString(6));
+				bookUser.setBookName(rs.getString(3));
+				bookUser.setAuthorName(rs.getString(4));
+				bookUser.setEdition(rs.getString(5));
+				bookUser.setQuantity(rs.getString(6));
+				bookUser.setBookimg(rs.getString(7));
 
 			}
 			rs.close();
@@ -82,7 +83,7 @@ public class BookUserDAO {
 			i = ps.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+		e.printStackTrace();	
 		}
 		return i;
 	}
@@ -116,11 +117,11 @@ public class BookUserDAO {
 			while (rs.next()) {
 				BookUser bookUser = new BookUser();
 				bookUser.setId(rs.getInt(1));
-				bookUser.setBookName(rs.getString(2));
-				bookUser.setAuthorName(rs.getString(3));
-				bookUser.setEdition(rs.getString(4));
-				bookUser.setQuantity(rs.getString(5));
-				bookUser.setBookimg(rs.getString(6));
+				bookUser.setBookName(rs.getString(3));
+				bookUser.setAuthorName(rs.getString(4));
+				bookUser.setEdition(rs.getString(5));
+				bookUser.setQuantity(rs.getString(6));
+				bookUser.setBookimg(rs.getString(7));
 				list.add(bookUser);
 
 			}
@@ -147,5 +148,13 @@ public class BookUserDAO {
 		}
 		return i;
 	}
-
+//public static void main(String[] args) {
+//	List<BookUser> bookList=BookUserDAO.fetchAllBooks();
+//	for(BookUser bookUser:bookList)
+//	{
+//		
+//		System.out.println(bookUser.getQuantity());
+//	
+//	}
+//}
 }

@@ -53,7 +53,7 @@
 		</div>
 	</nav>
 	<%
-	String message = (String) session.getAttribute("message");
+	String message = (String) request.getAttribute("message");
 	if (message != null) {
 	%>
 	<div class="alert alert-success alert-dismissible">
@@ -64,7 +64,7 @@
 	session.removeAttribute("message");
 	}
 	%>
-	
+
 	<%
 	String getMessage = (String) session.getAttribute("getMessage");
 	if (getMessage != null) {
@@ -91,10 +91,11 @@
 				<div class="carousel-caption d-none d-md-block">
 					<h2 style="color: whitesmoke;">
 						Welcome
-						<c:out value="${getName}"></c:out>
+						<c:out value="${getAdminName}"></c:out>
 					</h2>
 
-					<p style="color: whitesmoke;">Welcome Admin you free to change or update</p>
+					<p style="color: whitesmoke;">Welcome Admin you free to change
+						or update</p>
 				</div>
 			</div>
 		</div>
@@ -175,7 +176,7 @@
 					alt="...">
 			</div>
 		</div>
-		</div>
+	</div>
 	<footer class="text-center text-lg-start bg-body-tertiary text-muted">
 		<div class="text-center p-4"
 			style="background-color: rgba(0, 0, 0, 0.05);">

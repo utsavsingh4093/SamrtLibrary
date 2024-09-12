@@ -57,7 +57,7 @@
 		</div>
 	</nav>
 	<%
-	String message = (String) session.getAttribute("message");
+	String message = (String) request.getAttribute("message");
 	if (message != null) {
 	%>
 	<div class="alert alert-success alert-dismissible">
@@ -70,13 +70,12 @@
 	%>
 
 	<%
-	String mess = (String) session.getAttribute("messages");
+	String mess =(String) session.getAttribute("messages");
 	if (mess != null) {
 	%>
 	<div class="alert alert-success alert-dismissible">
 		<a href="UserHome.jsp" class="close" data-dismiss="alert"
-			aria-label="close">&times;</a> 
-			<strong><%=mess%></strong>
+			aria-label="close">&times;</a> <strong><%=mess%></strong>
 	</div>
 	<%
 	session.removeAttribute("messages");
@@ -106,7 +105,7 @@
 			</div>
 		</div>
 	</div>
-<div class="container my-4">
+	<div class="container my-4">
 		<div class="row mb-2">
 			<div class="col-md-6">
 				<div
@@ -180,25 +179,26 @@
 					alt="...">
 			</div>
 		</div>
-		
-	<footer class="text-center text-lg-start bg-body-tertiary text-muted">
-		<div class="text-center p-4"
-			style="background-color: rgba(0, 0, 0, 0.05);">
-			Smart Library Management <br> <a class="text-reset fw-bold"
-				href="https://mdbootstrap.com/">Email:- smartlibrary40@gmail.com</a>
-		</div>
-	</footer>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
+
+		<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+			<div class="text-center p-4"
+				style="background-color: rgba(0, 0, 0, 0.05);">
+				Smart Library Management <br> <a class="text-reset fw-bold"
+					href="https://mdbootstrap.com/">Email:-
+					smartlibrary40@gmail.com</a>
+			</div>
+		</footer>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"></script>
 </body>
 </html>

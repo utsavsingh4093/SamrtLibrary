@@ -12,44 +12,14 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$("#issueBookTable").on(
-						"keyup",
-						function() {
-							var value = $(this).val().toLowerCase();
-							$("#myTable tr").filter(
-									function() {
-										$(this).toggle(
-												$(this).find("td").eq(2).text()
-														.toLowerCase().indexOf(
-																value) > -1);
-									});
-						});
-
-				$("#myTable tr").each(function() {
-					var quantity = $(this).find(".quantityInput").val();
-					var button = $(this).find(".issueBookBtn");
-					var issueDate = $(this).find("#issuedate");
-					var returnDate = $(this).find("#returndate");
-					if (parseInt(quantity) === 0) {
-						button.prop('disabled', true);
-						button.css('color', 'red');
-						issueDate.prop('disabled', true);
-						returnDate.prop('disabled', true);
-					}
-				});
-
-				// Handle button click
-				$(".issueBookBtn").click(
-						function(event) {
-							var quantity = $(this).closest("tr").find(
-									".quantityInput").val();
-							if (parseInt(quantity) === 0) {
-								event.preventDefault();
-							}
-						});
-			});
+$(document).ready(function(){
+    $("#issueBookTable").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).find("td").eq(2).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+    
 </script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dao.AdminDAO;
 import com.dao.UserDAO;
+import com.dto.User;
 
 class EmailClass {
 	private static Random random = new Random();
@@ -62,29 +63,22 @@ public class GmailServletUser extends HttpServlet {
 		String email = (String) req.getParameter("email");
 		String password = req.getParameter("pass");
 		String role = req.getParameter("role");
+		long meberShipNumber = EmailClass.generateRandomNumber();
+		String memberNumber=String.valueOf(meberShipNumber);
 		if (email != null) {
-			validate_code_source obj_validate_code_source = new validate_code_source();
+			GmailChecking obj_validate_code_source = new GmailChecking();
 			boolean exists = obj_validate_code_source.isAddressValid(email);
 			if (exists == true) {
-
-				Connection con = null;
-				PreparedStatement ps = null;
-
 				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_project", "root", "4093");
-					String s = "insert into student(name,email,role,password,membernumber) values(?,?,?,?,?)";
-					ps = con.prepareStatement(s);
-					if (UserDAO.getEmail(email).size() == 0 && AdminDAO.getEmail(email).size() == 0) {
-						ps.setString(1, name);
-						ps.setString(2, email);
-						ps.setString(3, role);
-						ps.setString(4, password);
-						long meberShipNumber = EmailClass.generateRandomNumber();
-						ps.setLong(5, meberShipNumber);
-						EmailClass.start(password, email, meberShipNumber);
-						int i = ps.executeUpdate();
-						con.close();
+				if (UserDAO.getEmail(email).size() == 0 && AdminDAO.getEmail(email).size() == 0) {					
+						User user=new User();
+						user.setName(name);
+						user.setEmail(email);
+						user.setRole(role);
+						user.setPassword(password);
+						user.setMembernumber(memberNumber);
+						 EmailClass.start(password,email,meberShipNumber);
+						int i=UserDAO.InsertStudent(user);
 						if (i == 1) {
 							HttpSession session = req.getSession();
 							session.setAttribute("getMessage", "Your Registration is Succsess fully Thank You...");

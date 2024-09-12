@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*; 
 import javax.naming.*; 
 import javax.naming.directory.*;
-public class validate_code_source {
+public class GmailChecking {
     private static int hear( BufferedReader in ) throws IOException {
       String line = null;
       int res = 0;

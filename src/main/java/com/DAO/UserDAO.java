@@ -21,7 +21,27 @@ public class UserDAO {
 		}
 		return conn;
 	}
-
+public static int InsertStudent(User user)
+{
+	int i=0;
+	String query = "insert into student(name,email,role,password,membernumber) values(?,?,?,?,?)";
+	try {
+		Connection connection=UserDAO.getConnection();
+		PreparedStatement preparedStatement=connection.prepareStatement(query);
+		preparedStatement.setString(1,user.getName());
+		preparedStatement.setString(2,user.getEmail());
+		preparedStatement.setString(3,user.getRole());
+		preparedStatement.setString(4,user.getPassword());
+		preparedStatement.setString(5,user.getMembernumber());
+		i=preparedStatement.executeUpdate();
+		preparedStatement.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return i;
+	
+}
+	
 	public static User getUserByNumberAndPassword(String meberShipNumber, String password) {
 		User user = null;
 		try {

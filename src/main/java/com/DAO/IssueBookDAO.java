@@ -153,15 +153,15 @@ public class IssueBookDAO {
 
 	}
 
-	public static int updateBookstatus(String status, String status1) {
+	public static int updateBookstatus(String status,String userBooks,String status1) {
 		int i = 0;
-		String sql = "update issuebooks set status=? where status=?";
+		String sql = "update issuebooks set status=?,userbooks=? where status=?";
 		try {
 			Connection con = IssueBookDAO.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, status);
-
-			ps.setString(2, status1);
+            ps.setString(2, userBooks);
+			ps.setString(3, status1);
 			i = ps.executeUpdate();
 			con.close();
 		} catch (Exception e) {
@@ -186,4 +186,29 @@ public class IssueBookDAO {
 		}
 		return i;
 	}
+	
+	public static IssueBookDTO fetchDates(int bookId)
+	{
+		IssueBookDTO issueBookDTO=null;
+		String query="select issuedate,returndate from issuebooks where bookId=?";
+		try {
+			Connection conn = IssueBookDAO.getConnection();
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, bookId);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				issueBookDTO = new IssueBookDTO();
+				issueBookDTO.setIssueDate(rs.getString(1));
+				issueBookDTO.setReturnDate(rs.getString(2));
+			}
+			rs.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return issueBookDTO;
+	}
+	
+	
 }

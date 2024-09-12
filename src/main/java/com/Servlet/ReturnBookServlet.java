@@ -26,7 +26,7 @@ public class ReturnBookServlet extends HttpServlet {
 		LocalDate returndate = LocalDate.now();
 		HttpSession session = req.getSession();
 		session.setAttribute("getingreturndate", returndate);
-		int id = Integer.parseInt(req.getParameter("id"));
+		int id = Integer.parseInt(req.getParameter("id"));//Here the issueBookId I am getting
 		int bookid = Integer.parseInt(req.getParameter("bookid"));
 		// po.print(id);
 		IssueBookDTO issueBookDTO = IssueBookDAO.fetchSingleUser(id);

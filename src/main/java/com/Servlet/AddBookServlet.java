@@ -22,7 +22,8 @@ public class AddBookServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter po = resp.getWriter();
-		try {
+		
+		    String adminName=req.getParameter("adminName");
 			String bookName = req.getParameter("bookname");
 			String authorName = req.getParameter("author");
 			String edition = req.getParameter("edition");
@@ -32,7 +33,9 @@ public class AddBookServlet extends HttpServlet {
 
 			// System.out.println(bookName + " : " + authorName + " : " + edition + " : " +
 			// quantity + " : " + fileName);
+			try {
 			BookUser bookUser = new BookUser();
+			bookUser.setAdminName(adminName);
 			bookUser.setBookName(bookName);
 			bookUser.setAuthorName(authorName);
 			bookUser.setEdition(edition);
@@ -45,7 +48,7 @@ public class AddBookServlet extends HttpServlet {
 				System.out.println(path);
 				File file = new File(path);
 				part.write(path + File.separator + fileName);
-				resp.sendRedirect("AdminHome.jsp");
+				//resp.sendRedirect("AdminHome.jsp");
 				HttpSession session = req.getSession();
 				session.setAttribute("session", "Profile.jsp");
 				session.setAttribute("getMessage", "Book is Added Successfully in Library Thank you...");
@@ -57,7 +60,7 @@ public class AddBookServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		}
 	}
 }

@@ -17,7 +17,7 @@ public class IssueBookDataBaseServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int id = Integer.parseInt(req.getParameter("id"));
+		int bookId = Integer.parseInt(req.getParameter("id"));
 
 		String driver = "com.mysql.cj.jdbc.Driver";
 		HttpSession session = req.getSession();
@@ -36,7 +36,7 @@ public class IssueBookDataBaseServlet extends HttpServlet {
 		session4.setAttribute("getPass", pass);
 
 		HttpSession session5 = req.getSession();
-		session.setAttribute("getBookId", id);
+		session.setAttribute("getBookId", bookId);
 
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("issueBookDetails.jsp");
 		requestDispatcher.forward(req, resp);
