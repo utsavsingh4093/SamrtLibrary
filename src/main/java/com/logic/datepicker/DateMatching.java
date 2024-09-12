@@ -28,7 +28,7 @@ public class DateMatching {
         int availableQuantity = 0;
 
         for (BookUser bookUser : bookList) {
-            if (bookUser.getId() == bookId) { // Ensure we are checking the quantity for the correct book
+            if (bookUser.getId() == bookId) { 
                 availableQuantity = Integer.parseInt(bookUser.getQuantity());
                 System.out.println(availableQuantity);
                 break;
