@@ -43,9 +43,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="RenewBook.jsp">Renew Books <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item active"><a class="nav-link"
-					href="ReserveBook.jsp">Reserve Books <span class="sr-only">(current)</span></a>
-				</li>
+				
 			</ul>
 			<li class="nav-item">
 				<button
@@ -70,7 +68,7 @@
 	%>
 
 	<%
-	String mess =(String) session.getAttribute("messages");
+	String mess = (String) session.getAttribute("messages");
 	if (mess != null) {
 	%>
 	<div class="alert alert-success alert-dismissible">

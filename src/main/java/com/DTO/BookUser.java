@@ -8,7 +8,7 @@ public class BookUser {
 	private String edition;
 	private String quantity;
 	private String bookimg;
-
+     private int toatalBook;
 	public int getId() {
 		return id;
 	}
@@ -63,6 +63,14 @@ public class BookUser {
 
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
+	}
+
+	public int getToatalBook() {
+		return toatalBook;
+	}
+
+	public void setToatalBook(int toatalBook) {
+		this.toatalBook = toatalBook;
 	}
 
 }

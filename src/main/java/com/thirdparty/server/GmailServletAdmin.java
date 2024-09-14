@@ -2,14 +2,8 @@ package com.thirdparty.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +14,6 @@ import javax.servlet.http.HttpSession;
 import com.dao.AdminDAO;
 import com.dao.UserDAO;
 import com.dto.Admin;
-import com.dto.User;
-
-import jakarta.mail.Session;
 
 class EmaildataForAdmin {
 	private static Random random = new Random();

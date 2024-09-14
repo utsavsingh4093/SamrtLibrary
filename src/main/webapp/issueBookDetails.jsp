@@ -31,7 +31,6 @@
 				<td>Book</td>
 				<td>Author</td>
 				<td>Studant_Name</td>
-				<td>Available_Book_Quantity</td>
 				<td>User_book_issued</td>
 				<td>Status</td>
 				<td>Issue Date</td>
@@ -43,7 +42,6 @@
 					<td><c:out value="${row.bookName}" /></td>
 					<td><c:out value="${row.authorname}" /></td>
 					<td><c:out value="${row.studentname}" /></td>
-					<td><c:out value="${row.quantity}" /></td>
 					<td><c:out value="${row.userbooks}" /></td>
 					<td><c:out value="${row.status}" /></td>
 					<td><c:out value="${row.issueDate}" /></td>

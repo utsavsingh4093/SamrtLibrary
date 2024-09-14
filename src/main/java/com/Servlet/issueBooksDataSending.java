@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
@@ -15,7 +16,7 @@ import com.dao.BookUserDAO;
 import com.dao.IssueBookDAO;
 import com.dto.BookUser;
 import com.dto.IssueBookDTO;
-import com.logic.datepicker.DateMatching;
+import com.logic.datepicker.BookIssueChecker;
 
 @WebServlet("/issuebooksservel")
 public class issueBooksDataSending extends HttpServlet {
@@ -42,12 +43,7 @@ public class issueBooksDataSending extends HttpServlet {
 		String issueDate = String.valueOf(req.getParameter("issuedate"));
 		String returnDate = String.valueOf(req.getParameter("returndate"));
 		String Quantity = req.getParameter("bookQuantity");
-		if(Integer.parseInt(Quantity)==0)
-		{
-			bookQuantity="0";
-			statue="Reserved";
-		}
-		
+		System.out.println("Requested Quantity: " + Quantity);
 		IssueBookDTO issueBookDTO = new IssueBookDTO();
 		issueBookDTO.setBookid(bookid);
 		issueBookDTO.setSid(sid);
@@ -60,13 +56,17 @@ public class issueBooksDataSending extends HttpServlet {
 		issueBookDTO.setStatus(statue);
 		issueBookDTO.setIssueDate(issueDate);
 		issueBookDTO.setReturnDate(returnDate);
-		
-		if(DateMatching.dateChecking(issueDate, returnDate, bookid,Integer.parseInt(Quantity))) {
+	
+        int totalBooks = bookUser.getToatalBook();
+         
+
+		if (BookIssueChecker.dateChecking(issueDate, returnDate, bookid, totalBooks)) {
 			int i = IssueBookDAO.insetIssueBookData(issueBookDTO);
 			if (i > 0) {
 				// Total Book Available in library
 				String availableQuantity = String.valueOf(Integer.parseInt(Quantity) - Integer.parseInt(bookQuantity));
-				System.out.println("AvailableQuantity of Book : "+availableQuantity);
+
+				//System.out.println("AvailableQuantity of Book : " + availableQuantity);
 				int quantityData = Integer.parseInt(availableQuantity);
 				int j = BookUserDAO.updatebook(availableQuantity, bookid);
 				if (j > 0) {
@@ -74,17 +74,19 @@ public class issueBooksDataSending extends HttpServlet {
 					HttpSession session = req.getSession();
 					session.setAttribute("getavailbleQuantity", "data");
 					session.setAttribute("getmessage", "Your Book is issued successfully Thank you...");
-					
+
 					HttpSession ses = req.getSession();
 					ses.setAttribute("getQuantity", availableQuantity);
 				}
 			} else {
 				resp.sendRedirect("issueBooks.jsp");
 			}
-		}
-		else {
+		} else {
+//			issueBookDTO=IssueBookDAO.fetchReturnDate(bookid);
+//			String returndate1=issueBookDTO.getReturnDate();
 			HttpSession session = req.getSession();
-			session.setAttribute("getmessage", "This Is Not Available For that Day Try with Another Date of issue and Return..");
+			session.setAttribute("getmessage",
+					"This Is Not Available For that Day Try with Date of issue Thank you...");
 			resp.sendRedirect("issueBooks.jsp");
 		}
 	}

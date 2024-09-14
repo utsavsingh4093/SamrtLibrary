@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.dto.BookUser;
 import com.dto.IssueBookDTO;
@@ -187,10 +190,11 @@ public class IssueBookDAO {
 		return i;
 	}
 	
-	public static IssueBookDTO fetchDates(int bookId)
+	public static List<IssueBookDTO> fetchDates(int bookId)
 	{
+		List<IssueBookDTO> list=new ArrayList<IssueBookDTO>();
 		IssueBookDTO issueBookDTO=null;
-		String query="select issuedate,returndate from issuebooks where bookId=?";
+		String query="select issuedate,returndate from issuebooks where bookId=? and userbooks<>0";
 		try {
 			Connection conn = IssueBookDAO.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -201,6 +205,27 @@ public class IssueBookDAO {
 				issueBookDTO = new IssueBookDTO();
 				issueBookDTO.setIssueDate(rs.getString(1));
 				issueBookDTO.setReturnDate(rs.getString(2));
+				list.add(issueBookDTO);
+			}
+			
+			rs.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public static IssueBookDTO fetchReturnDate(int bookId) {
+		IssueBookDTO issueBookDTO = null;
+		String sql = "select returndate from issuebooks where bookId=? and userbooks<>'0' order by returndate desc limit 1";
+		try {
+			Connection conn = IssueBookDAO.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bookId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				issueBookDTO = new IssueBookDTO();
+				issueBookDTO.setReturnDate(rs.getString(1));
 			}
 			rs.close();
 			conn.close();
@@ -208,6 +233,6 @@ public class IssueBookDAO {
 			e.printStackTrace();
 		}
 		return issueBookDTO;
-	}
 
+	}
 }

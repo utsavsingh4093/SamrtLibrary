@@ -31,7 +31,7 @@ public class BookUserDAO {
 		int i = 0;
 		try {
 			Connection connection = BookUserDAO.getConnection();
-			String query = "insert into addbook(adminName,BookName,Author,Edition,Quantity,Book) values(?,?,?,?,?,?)";
+			String query = "insert into addbook(adminName,BookName,Author,Edition,Quantity,Book,totalBooks) values(?,?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, bookUser.getAdminName());
 			preparedStatement.setString(2, bookUser.getBookName());
@@ -39,6 +39,7 @@ public class BookUserDAO {
 			preparedStatement.setString(4, bookUser.getEdition());
 			preparedStatement.setString(5, bookUser.getQuantity());
 			preparedStatement.setString(6, bookUser.getBookimg());
+			preparedStatement.setInt(7, bookUser.getToatalBook());
 			i = preparedStatement.executeUpdate();
 			connection.close();
 		} catch (Exception e) {
@@ -63,7 +64,7 @@ public class BookUserDAO {
 				bookUser.setEdition(rs.getString(5));
 				bookUser.setQuantity(rs.getString(6));
 				bookUser.setBookimg(rs.getString(7));
-
+				bookUser.setToatalBook(rs.getInt(8));
 			}
 			rs.close();
 			con.close();
@@ -122,6 +123,7 @@ public class BookUserDAO {
 				bookUser.setEdition(rs.getString(5));
 				bookUser.setQuantity(rs.getString(6));
 				bookUser.setBookimg(rs.getString(7));
+				bookUser.setToatalBook(rs.getInt(8));
 				list.add(bookUser);
 
 			}
@@ -148,13 +150,4 @@ public class BookUserDAO {
 		}
 		return i;
 	}
-//public static void main(String[] args) {
-//	List<BookUser> bookList=BookUserDAO.fetchAllBooks();
-//	for(BookUser bookUser:bookList)
-//	{
-//		
-//		System.out.println(bookUser.getQuantity());
-//	
-//	}
-//}
 }

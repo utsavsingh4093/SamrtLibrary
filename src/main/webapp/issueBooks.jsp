@@ -19,7 +19,7 @@ $(document).ready(function(){
             $(this).toggle($(this).find("td").eq(2).text().toLowerCase().indexOf(value) > -1);
         });
     });
-    
+});
 </script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -58,11 +58,10 @@ $(document).ready(function(){
 				<td>Book Name</td>
 				<td>Author Name</td>
 				<td>Edition</td>
-				<td>Books Quantity</td>
 				<td>Issue Date</td>
 				<td>Return Date</td>
 				<td>Issue</td>
-				<td>Reserve</td>
+			
 			</tr>
 
 			<tbody id="myTable">
@@ -73,7 +72,6 @@ $(document).ready(function(){
 						<td><c:out value="${row.BookName}"></c:out></td>
 						<td><c:out value="${row.Author}"></c:out></td>
 						<td><c:out value="${row.Edition}" /></td>
-						<td><c:out value="${row.Quantity}" /></td>
 
 						<form action="issuebooksservel" method="post">
 							<td><input type="date" id="issuedate" name="issuedate"></td>
@@ -88,9 +86,7 @@ $(document).ready(function(){
 								<button id="btnInput" type="submit"
 									class="btn btn-success issueBookBtn">IssueBook</button></td>
 						</form>
-						<td><a href="ReservBookData.jsp?id=${row.id}"><button
-									type="submit" class="btn btn-success issueBook">Reserve</button></a>
-						</td>
+					
 					</tr>
 				</c:forEach>
 			<tbody>

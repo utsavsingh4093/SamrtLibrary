@@ -1,11 +1,12 @@
 package com.thirdparty.server;
-
 import java.io.*;
 import java.net.*;
 import java.util.*; 
 import javax.naming.*; 
 import javax.naming.directory.*;
+
 public class GmailChecking {
+	 
     private static int hear( BufferedReader in ) throws IOException {
       String line = null;
       int res = 0;
@@ -21,14 +22,17 @@ public class GmailChecking {
       }
       return res;
       }
+    
     private static void say( BufferedWriter wr, String text ) 
        throws IOException {
       wr.write( text + "\r\n" );
       wr.flush();
       return;
       }
+    
     private static ArrayList getMX( String hostName )
           throws NamingException {
+      // Perform a DNS lookup for MX records in the domain
       Hashtable env = new Hashtable();
       env.put("java.naming.factory.initial",
               "com.sun.jndi.dns.DnsContextFactory");
@@ -36,6 +40,7 @@ public class GmailChecking {
       Attributes attrs = ictx.getAttributes
                             ( hostName, new String[] { "MX" });
       Attribute attr = attrs.get( "MX" );
+      // if we don't have an MX record, try the machine itself
       if (( attr == null ) || ( attr.size() == 0 )) {
         attrs = ictx.getAttributes( hostName, new String[] { "A" });
         attr = attrs.get( "A" );
@@ -43,7 +48,9 @@ public class GmailChecking {
              throw new NamingException
                       ( "No match for name '" + hostName + "'" );
       }
-     
+      // Huzzah! we have machines to try. Return them as an array list
+      // NOTE: We SHOULD take the preference into account to be absolutely
+      //   correct. This is left as an exercise for anyone who cares.
       ArrayList res = new ArrayList();
       NamingEnumeration en = attr.getAll();
       while ( en.hasMore() ) {
@@ -55,9 +62,13 @@ public class GmailChecking {
       }
       return res;
       }
+    
     public static boolean isAddressValid( String address ) {
+      // Find the separator for the domain name
       int pos = address.indexOf( '@' );
+      // If the address does not contain an '@', it's not valid
       if ( pos == -1 ) return false;
+      // Isolate the domain/machine name and get a list of mail exchangers
       String domain = address.substring( ++pos );
       ArrayList mxList = null;
       try {
@@ -66,9 +77,14 @@ public class GmailChecking {
       catch (NamingException ex) {
          return false;
       }
-    
+      // Just because we can send mail to the domain, doesn't mean that the
+      // address is valid, but if we can't, it's a sure sign that it isn't
       if ( mxList.size() == 0 ) return false;
-     
+      // Now, do the SMTP validation, try each mail exchanger until we get
+      // a positive acceptance. It *MAY* be possible for one MX to allow
+      // a message [store and forwarder for example] and another [like
+      // the actual mail server] to reject it. This is why we REALLY ought
+      // to take the preference into account.
       for ( int mx = 0 ; mx < mxList.size() ; mx++ ) {
           boolean valid = false;
           try {
@@ -108,13 +124,5 @@ public class GmailChecking {
       }
       return false;
       }
-    public  String call_this_to_validate( String email ) {
-        String testData[] = {email};
-        String return_string="";
-        for ( int ctr = 0 ; ctr < testData.length ; ctr++ ) {
-        	return_string=( testData[ ctr ] + " is valid? " + 
-                 isAddressValid( testData[ ctr ] ) );
-        }
-        return return_string;
-        }
+    
 }

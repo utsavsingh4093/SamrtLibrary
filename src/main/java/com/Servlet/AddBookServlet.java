@@ -28,6 +28,7 @@ public class AddBookServlet extends HttpServlet {
 			String authorName = req.getParameter("author");
 			String edition = req.getParameter("edition");
 			String quantity = req.getParameter("quantity");
+			int total_Quantity =Integer.parseInt(req.getParameter("quantity"));
 			Part part = req.getPart("bimg");
 			String fileName = part.getSubmittedFileName();
 
@@ -41,7 +42,7 @@ public class AddBookServlet extends HttpServlet {
 			bookUser.setEdition(edition);
 			bookUser.setQuantity(quantity);
 			bookUser.setBookimg(fileName);
-
+            bookUser.setToatalBook(total_Quantity);
 			int i = BookUserDAO.insertBook(bookUser);
 			if (i >= 0) {
 				String path = getServletContext().getRealPath("") + "Book";

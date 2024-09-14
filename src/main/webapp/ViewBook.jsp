@@ -43,7 +43,16 @@
 					<td><c:out value="${row.BookName}" /></td>
 					<td><c:out value="${row.Author}" /></td>
 					<td><c:out value="${row.Edition}" /></td>
-					<td><c:out value="${row.Quantity}" /></td>
+					<td>
+                        <c:choose>
+                            <c:when test="${row.quantity < 0}">
+                                0
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value="${row.quantity}" />
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
 					<td>
 						<form action="deletebook" method="post">
 							<input type="hidden" name="id" value="${row.id}" />
