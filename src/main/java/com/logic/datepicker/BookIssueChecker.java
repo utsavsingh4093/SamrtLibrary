@@ -78,7 +78,7 @@ public class BookIssueChecker {
    	        LocalDate existingIssueDate = LocalDate.parse(issueBookDTO.getIssueDate());
    	        LocalDate existingReturnDate = LocalDate.parse(issueBookDTO.getReturnDate());
    	        
-   	     if (availableQuantity < 0 || availableQuantity == 0) {
+   	     if (availableQuantity >0 || availableQuantity < 0 || availableQuantity == 0) {
    	        if (newIssueDate.isBefore(existingReturnDate) && newReturnDate.isAfter(existingIssueDate)) {
    	            return false;
    	        }
